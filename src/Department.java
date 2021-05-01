@@ -1,6 +1,5 @@
 public enum Department {
     DERMATOLOGY,
-    EMERGENCY_MEDICINE,
     INTERNAL_MEDICINE,
     NEUROLOGY,
     OPHTHALMOLOGY,

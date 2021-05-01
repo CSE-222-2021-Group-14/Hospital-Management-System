@@ -1,5 +1,6 @@
 import java.io.Serializable;
-public abstract class Person implements PersonInterface, Serializable {
+
+public abstract class Person implements PersonInterface, Serializable{
     String name;
     String surname;
     String ID;
@@ -34,6 +35,13 @@ public abstract class Person implements PersonInterface, Serializable {
     }
 
     public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
+    }
+
+    public Person(String name, String surname, String ID, String phoneNum) {
+        this.name = name;
+        this.surname = surname;
+        this.ID = ID;
         this.phoneNum = phoneNum;
     }
 }
