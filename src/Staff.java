@@ -1,1 +1,1 @@
-public abstract class Staff extends Person {}
+public interface Staff{}

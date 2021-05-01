@@ -1,15 +1,12 @@
 import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class test {
-    @SuppressWarnings("unchecked")
-    public static void main(String[] args) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM yyyy   HH:mm");
+    public static void main(String[] args) throws Exception {
+        /*DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM yyyy   HH:mm");
         LocalDateTime localDateTime = LocalDateTime.now();
         Calendar calendar = Calendar.getInstance();
         LocalDateTime ldt = LocalDateTime.ofInstant(calendar.toInstant(), calendar.getTimeZone().toZoneId());
@@ -26,49 +23,88 @@ public class test {
         } catch (InvalidPrescriptionException e) {
             System.out.println("invalid prescription");
         }
-        System.out.println("\u001B[31m" + "cancelled" + "\u001B[0m");
-        /*ArrayList<Person> array = new ArrayList<>();
-        File file = new File("tmp/data.ser");
-        if(file.exists()){
-            System.out.println("EXISTS\n\n");
-            try {
-                FileInputStream fileIn = new FileInputStream(file);
-                ObjectInputStream in = new ObjectInputStream(fileIn);
-                array = (ArrayList<Person>) in.readObject();
-                //p2 = (Person) in.readObject();
-                in.close();
-                fileIn.close();
-            } catch (IOException i) {
-                i.printStackTrace();
-            } catch (ClassNotFoundException c) {
-                System.out.println("Employee class not found");
-                c.printStackTrace();
+        System.out.println("\u001B[31m" + "cancelled" + "\u001B[0m");*/
+        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
+        tree.add(8);
+        tree.add(3);
+        tree.add(10);
+        tree.add(1);
+        tree.add(2);
+        tree.add(6);
+        tree.add(4);
+        tree.add(7);
+        System.out.println(tree.contains(11));
+        tree.add(14);
+        tree.add(13);
+        System.out.println();
+        System.out.println(tree);
+        System.out.println();
+        System.out.println(tree.delete(3));
+        System.out.println();
+        System.out.println(tree);
+
+        String s = "[\\p{L}\\p{N}']+";
+        System.out.println(s);
+        /*BinarySearchTree<String > newTree = BinarySearchTree.readBinaryTree(new Scanner(temp));
+        System.out.println();
+        System.out.println(newTree);*/
+        /*Scanner scanner = new Scanner(temp);
+        for(int i = 0; i < 7; i++){
+            System.out.println(scanner.nextLine());
+        }*/
+        //System.out.println("\n" + (int)5/2);
+    }
+
+    public static ArrayList<Object> deserialize() throws IOException, ClassNotFoundException {
+        //File file = new File();
+        FileInputStream fileIn = new FileInputStream("tmp/data.ser");
+        ObjectInputStream in = new ObjectInputStream(fileIn);
+        ArrayList<Object> items = new ArrayList<>();
+        try {
+            while (true){
+                items.add(in.readObject());
             }
         }
-        else {
-            System.out.println("DOESN'T EXIST\n\n");
-            array.add(new Person("person1", "ıvj", "12345", "123"));
-            array.add(new Person("person2", "surname", "90876", "38r823"));
+        catch (OptionalDataException e){
+            if(!e.eof){
+                throw e;
+            }
         }
-        for (Person p1 : array) {
-            System.out.println("name: " + p1.getName());
-            System.out.println("surname: " + p1.getSurname());
-            System.out.println("ID: " + p1.getID());
-            System.out.println("phoneNo: " + p1.getPhoneNum() + "\n");
+        catch (EOFException e){
+            in.close();
+            fileIn.close();
         }
-
-        try {
-            FileOutputStream fileOut = new FileOutputStream("tmp/data.ser");
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(array);
-            //out.writeObject(p2);
-            out.close();
-            fileOut.close();
-            System.out.print("Serialized data is saved in tmp/data.ser");
-        } catch (IOException i) {
-            i.printStackTrace();
-        }*/
+        System.out.println("okunan dosya: " + items);
+        return items;
     }
+
+    /*@SuppressWarnings("unchecked")
+    public static <E extends Serializable> Collection<E> deserialize(Collection<E> collection) throws IOException, ClassNotFoundException {
+        File file = new File("tmp/data.ser");
+        FileInputStream fileIn = new FileInputStream(file);
+        ObjectInputStream in = new ObjectInputStream(fileIn);
+        collection = (Collection<E>) in.readObject();
+        in.close();
+        fileIn.close();
+        System.out.println("okunan dosya: " + collection);
+        return collection;
+    }*/
+
+    public static <E extends Serializable> void serialize(E item) throws IOException {
+        FileOutputStream fileOut = new FileOutputStream("tmp/data.ser");
+        ObjectOutputStream out = new ObjectOutputStream(fileOut);
+        out.writeObject(item);
+        out.close();
+        fileOut.close();
+    }
+
+    /*public static <E extends Serializable> void serialize(Collection<E> collection) throws IOException {
+        FileOutputStream fileOut = new FileOutputStream("tmp/data.ser");
+        ObjectOutputStream out = new ObjectOutputStream(fileOut);
+        out.writeObject(collection);
+        out.close();
+        fileOut.close();
+    }*/
 
     public static String timeInterval(LocalDateTime date1, LocalDateTime date2){
         if(date2.compareTo(date1) < 0){

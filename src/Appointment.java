@@ -1,13 +1,9 @@
+import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
-public class Appointment {
+public class Appointment implements Serializable {
     Patient patient;
-    Doctor doctor;
-    Department department;
     LocalDateTime time;
-    String status;
-
     /*@Override
     public String toString() {
         StringBuilder s = new StringBuilder();
