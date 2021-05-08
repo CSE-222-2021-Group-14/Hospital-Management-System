@@ -1,7 +1,8 @@
 import java.util.Queue;
 
-public class Doctor extends Person implements DoctorInterface, Staff, Comparable<Doctor>{
+public class Doctor extends AbstractPerson implements Staff, Comparable<Doctor>{
     Queue<Appointment> appointments;//priority olucak
+    Queue<Notification> notifications;
     Department department;
 
     public Doctor(String name, String surname, String ID, String phoneNum, Department department) {
@@ -9,39 +10,33 @@ public class Doctor extends Person implements DoctorInterface, Staff, Comparable
         this.department = department;
     }
 
-    @Override
-    public PatientInterface callPatient() {
+
+    public Patient callPatient() {
         return null;
     }
 
-    @Override
     public void viewAppointments() {
         for(Appointment i : appointments){
             System.out.println(i);
         }
     }
 
-    @Override
-    public void viewPatientMedicalInfo(PatientInterface patient) {
+    public void viewPatientMedicalInfo(Patient patient) {
 
     }
 
-    @Override
-    public void viewPatientPrevAppointments(PatientInterface patient) {
+    public void viewPatientPrevAppointments(Patient patient) {
 
     }
 
-    @Override
-    public void setPatientStatus(PatientInterface patient) {
+    public void setPatientStatus(Patient patient) {
 
     }
 
-    @Override
     public void viewInpatients() {
 
     }
 
-    @Override
     public void clearSchedule() {
 
     }
