@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-public class test {
+public class Driver {
     public static void main(String[] args) throws Exception {
         /*DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM yyyy   HH:mm");
         LocalDateTime localDateTime = LocalDateTime.now();
@@ -24,35 +24,7 @@ public class test {
             System.out.println("invalid prescription");
         }
         System.out.println("\u001B[31m" + "cancelled" + "\u001B[0m");*/
-        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
-        tree.add(8);
-        tree.add(3);
-        tree.add(10);
-        tree.add(1);
-        tree.add(2);
-        tree.add(6);
-        tree.add(4);
-        tree.add(7);
-        System.out.println(tree.contains(11));
-        tree.add(14);
-        tree.add(13);
-        System.out.println();
-        System.out.println(tree);
-        System.out.println();
-        System.out.println(tree.delete(3));
-        System.out.println();
-        System.out.println(tree);
 
-        String s = "[\\p{L}\\p{N}']+";
-        System.out.println(s);
-        /*BinarySearchTree<String > newTree = BinarySearchTree.readBinaryTree(new Scanner(temp));
-        System.out.println();
-        System.out.println(newTree);*/
-        /*Scanner scanner = new Scanner(temp);
-        for(int i = 0; i < 7; i++){
-            System.out.println(scanner.nextLine());
-        }*/
-        //System.out.println("\n" + (int)5/2);
     }
 
     public static ArrayList<Object> deserialize() throws IOException, ClassNotFoundException {

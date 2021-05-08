@@ -1,7 +1,7 @@
 import java.time.LocalDateTime;
 
 public class Notification {
-    Person person;
+    Person p;
     LocalDateTime time;//appointment time Notification
 
     /*@Override

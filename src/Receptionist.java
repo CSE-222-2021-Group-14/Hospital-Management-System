@@ -1,19 +1,17 @@
 import java.util.NoSuchElementException;
 
-public class Receptionist extends Person implements ReceptionistInterface, Comparable<Receptionist> {
+public class Receptionist extends AbstractPerson implements Staff, Comparable<Receptionist> {
     public Receptionist(String name, String surname, String ID, String phoneNum) {
         super(name, surname, ID, phoneNum);
     }
 
-    @Override
-    public Patient newPatientRegistration(String name, String surname, String ID, String phoneNum, Hospital_Management_System system) {
+    public Patient newPatientRegistration(String name, String surname, String ID, String phoneNum, HospitalManagementSystem system) {
         Patient newPatient = new Patient(name, surname, ID, phoneNum);
         system.patients.add(newPatient);
         return newPatient;
     }
 
-    @Override
-    public boolean confirmAppointments(String ID, Hospital_Management_System system) {
+    public boolean confirmAppointments(String ID, HospitalManagementSystem system) {
         Patient patient;
         try{
             patient = system.findPatient(ID);

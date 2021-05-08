@@ -1,7 +1,7 @@
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Appointment implements Serializable {
+public abstract class Appointment implements Serializable {
     Patient patient;
     LocalDateTime time;
     /*@Override

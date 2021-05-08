@@ -1,1 +1,1 @@
-public interface Staff{}
+public interface Staff extends Person{}
