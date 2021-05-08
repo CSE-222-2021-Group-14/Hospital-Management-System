@@ -1,32 +1,31 @@
-import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Queue;
+import java.util.Stack;
 
-public class Patient extends Person implements PatientInterface, Comparable<Patient> {
-    ArrayList<Appointment> appointments;
+public class Patient extends AbstractPerson implements Comparable<Patient> {
+    Stack<Appointment> appointments;
+    Queue<Notification> notifications;
+    ArrayList<Prescription> prescriptions;
     int age;
     boolean isEmergency;
 
     public Patient(String name, String surname, String ID, String phoneNum) {
         super(name, surname, ID, phoneNum);
-        appointments = new ArrayList<>();
+        appointments = new Stack<>();
     }
 
-    @Override
-    public void addAppointment() {
-
-    }
-
-    @Override
-    public void removeAppointment() {
+    public void addAppointment(Appointment a) {
 
     }
 
-    @Override
+    public void removeAppointment(Appointment a) {
+
+    }
+
     public void viewAppointments() {
 
     }
 
-    @Override
     public void viewPrescriptions() {
 
     }
