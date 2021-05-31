@@ -7,7 +7,7 @@ public class VaccineAppointment extends Appointment{
         setPatient(patient);
         this.nurse = nurse;
         setTime(time);
-        this.confirmed = false;
+        setConfirmed(false);
     }
 
     public Nurse getNurse() {
@@ -18,7 +18,7 @@ public class VaccineAppointment extends Appointment{
     @Override
     public String toString() {
         return "VaccineAppointment{" +
-                "confirmed=" + confirmed +
+                "confirmed=" + isConfirmed() +
                 ", nurse=" + nurse +
                 '}';
     }

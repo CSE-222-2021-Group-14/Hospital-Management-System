@@ -9,7 +9,7 @@ public class PolyclinicAppointment extends Appointment{
         setPatient(patient);
         this.doctor = doctor;
         setTime(time);
-        this.confirmed = false;
+        setConfirmed(false);
         this.department = department;
     }
 
@@ -26,7 +26,7 @@ public class PolyclinicAppointment extends Appointment{
         return "PolyclinicAppointment{" +
                 "patient=" + getPatient() +
                 ", time=" + getTime() +
-                ", confirmed=" + confirmed +
+                ", confirmed=" + isConfirmed() +
                 ", doctor=" + doctor +
                 ", department=" + department +
                 ", status='" + status + '\'' +

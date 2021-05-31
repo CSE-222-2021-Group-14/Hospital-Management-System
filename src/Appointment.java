@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 public abstract class Appointment implements Serializable , Comparable<Appointment>{
     private Patient patient;
     private LocalDateTime time;
-    boolean confirmed;
+    private boolean confirmed;
 
 
     public Patient getPatient() {
