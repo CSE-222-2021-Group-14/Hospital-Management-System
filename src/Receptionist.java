@@ -13,17 +13,39 @@ public class Receptionist extends AbstractPerson implements Staff, Comparable<Re
 
     public boolean confirmAppointments(String ID, HospitalManagementSystem system) {
         Patient patient;
+        boolean confirmed = false;
         try{
             patient = system.findPatient(ID);
+            PolyclinicAppointment polyclinicAppointment;
+            VaccineAppointment vaccineAppointment;
+            for(Appointment appointment : patient.getAppointments())
+                if(!appointment.isConfirmed()){
+                    if(appointment instanceof PolyclinicAppointment) {
+                        polyclinicAppointment = (PolyclinicAppointment) appointment;
+                        if (polyclinicAppointment.getDoctor().getDepartment().equals(polyclinicAppointment.getDepartment())) {
+                            polyclinicAppointment.setConfirmed(true);
+                            polyclinicAppointment.getDoctor().add(polyclinicAppointment);
+                            confirmed=true;
+                        }
+                    }
+                    else if(appointment instanceof VaccineAppointment)   {
+                        vaccineAppointment = (VaccineAppointment) appointment;
+                        vaccineAppointment.setConfirmed(true);
+                        vaccineAppointment.getNurse().add(vaccineAppointment);
+                        confirmed=true;
+                    }
+                }
         }
         catch (NoSuchElementException e){
             throw new NoSuchElementException();
         }
+        if(confirmed)
+            return true;
         return false;
     }
 
     @Override
     public int compareTo(Receptionist o) {
-        return 0;
+        return this.getID().compareTo(o.getID());
     }
 }
