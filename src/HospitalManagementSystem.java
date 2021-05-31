@@ -1,12 +1,11 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.NoSuchElementException;
+import java.util.*;
+import java.util.concurrent.ConcurrentSkipListMap;
 
 public class HospitalManagementSystem implements Serializable {
-    BinarySearchTree<Doctor> doctors;// olucak
-    BinarySearchTree<Patient> patients;//hashmap olucak
-    BinarySearchTree<Receptionist> receptionists;//hashmap olucak
+    TreeMap<String, Doctor> doctors;// olucak
+    TreeMap<String, Patient> patients;//hashmap olucak
+    TreeMap<String, Receptionist> receptionists;//hashmap olucak
 
     public HospitalManagementSystem() throws IOException, ClassNotFoundException {
         //deserialize(this);

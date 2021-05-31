@@ -24,7 +24,17 @@ public class Driver {
             System.out.println("invalid prescription");
         }
         System.out.println("\u001B[31m" + "cancelled" + "\u001B[0m");*/
-
+        TreeMap<Integer, String> map = new TreeMap<>();
+        HashMap<Integer, String> hashMap = new HashMap<>();
+        Random random = new Random();
+        for(int i = 0; i < 10; i++){
+            int rand = random.nextInt(5000);
+            map.put(rand, "a");
+            hashMap.put(rand, "a");
+        }
+        System.out.println(map);
+        System.out.println(map.descendingMap());
+        System.out.println(hashMap);
     }
 
     public static ArrayList<Object> deserialize() throws IOException, ClassNotFoundException {
