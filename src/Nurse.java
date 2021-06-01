@@ -1,6 +1,6 @@
 import java.util.Queue;
 
-public class Nurse extends AbstractPerson implements Staff {
+public class Nurse extends AbstractPerson implements Staff, Comparable<Nurse> {
 
     static Queue<Patient> requests;
 
@@ -14,5 +14,8 @@ public class Nurse extends AbstractPerson implements Staff {
 
     public void  takeCare(){} // Requestden pop yapar.
 
-
+    @Override
+    public int compareTo(Nurse o) {
+        return 0;
+    }
 }

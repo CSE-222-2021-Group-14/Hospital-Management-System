@@ -11,8 +11,16 @@ public class HospitalManagementSystem implements Serializable {
     private TreeMap<String, Receptionist> receptionists;//hashmap olucak
     private TreeMap<String, Administrator> administrators;//hashmap olucak
     private TreeMap<String, Nurse> nurses;//hashmap olucak
-    private PriorityQueue<Appointment> allAppointments
+    private PriorityQueue<Appointment> allAppointments;
+    private int vaccineAge;
 
+    public int getVaccineAge() {
+        return vaccineAge;
+    }
+
+    public void setVaccineAge(int vaccineAge) {
+        this.vaccineAge = vaccineAge;
+    }
 
     public HospitalManagementSystem() throws IOException, ClassNotFoundException {
         //deserialize(this);
@@ -48,6 +56,10 @@ public class HospitalManagementSystem implements Serializable {
 
     protected PriorityQueue<Appointment> getAllAppointments() {
         return allAppointments;
+    }
+
+    protected TreeMap<String, Nurse> getNurses() {
+        return nurses;
     }
 
     public void runSystem(){
