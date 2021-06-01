@@ -1,23 +1,47 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 public class HospitalManagementSystem implements Serializable {
-    BinarySearchTree<Doctor> doctors;// olucak
-    BinarySearchTree<Patient> patients;//hashmap olucak
-    BinarySearchTree<Receptionist> receptionists;//hashmap olucak
+    private HashMap<String,Doctor> doctors;
+    private HashMap<String,Patient> patients;
+    private HashMap<String,Receptionist> receptionists;
+    private HashMap<String,Nurse> nurses;
+    private int vaccineAge;
+
+    public int getVaccineAge() {
+        return vaccineAge;
+    }
+
+    public void setVaccineAge(int vaccineAge) {
+        this.vaccineAge = vaccineAge;
+    }
+
+    public HashMap<String, Doctor> getDoctors() {
+        return doctors;
+    }
+
+    public HashMap<String, Patient> getPatients() {
+        return patients;
+    }
+
+    public HashMap<String, Receptionist> getReceptionists() {
+        return receptionists;
+    }
+
+    public HashMap<String, Nurse> getNurses() {
+        return nurses;
+    }
 
     public HospitalManagementSystem() throws IOException, ClassNotFoundException {
         //deserialize(this);
     }
 
     public Patient findPatient(String ID) throws NoSuchElementException{
-        return patients.find(new Patient(null,null,ID,null));
+        return patients.get(ID);
     }
 
     public Doctor findDoctor(String ID) throws NoSuchElementException{
-        return doctors.find(new Doctor(null,null,ID,null,null));
+        return doctors.get(ID);
     }
 
     private void serialize() throws IOException {
