@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -5,24 +6,36 @@ public class Doctor extends AbstractPerson implements Staff, Comparable<Doctor>{
     PriorityQueue<Appointment> appointments;//priority olucak
     Queue<Notification> notifications;
     Department department;
-    Patient currentPatient;
+    LocalDateTime lastLoginDate;
 
-    public Doctor(String name, String surname, String ID, String phoneNum, Department department) {
-        super(name, surname, ID, phoneNum);
+    public Doctor(String name, String surname, String ID, String phoneNum, String password, Department department) {
+        super(name, surname, ID, phoneNum, password);
         this.department = department;
         appointments = new PriorityQueue<>();
         notifications = new ArrayDeque<>();
     }
 
+    public void viewNotifications(){
+        try {
+            while (!notifications.isEmpty()){
+                System.out.println(notifications.remove());
+            }
+        } catch (NoSuchElementException e) {
+            System.out.println("There is no notification to view");
+        }
+    }
 
     public Patient callPatient() {
-        currentPatient = appointments.poll().patient;
-        return currentPatient;
+        if(!appointments.isEmpty()) {
+            return appointments.poll().patient;
+        }
+        return null;
     }
 
     public void viewAppointments() {
-        Calendar calendar = Calendar.getInstance();
-        LocalDateTime today = LocalDateTime.of(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), 23, 59);
+        //LocalDateTime ldt = LocalDateTime.now();
+        //LocalDateTime today = LocalDateTime.of(ldt.getYear(), ldt.getMonth(), ldt.getDayOfMonth(), 23, 59);
+        LocalDateTime today = LocalDate.now().atTime(23, 59);
         for(Appointment i : appointments){
             if(i.time.compareTo(today) < 0){
                 System.out.println(i);
@@ -41,7 +54,8 @@ public class Doctor extends AbstractPerson implements Staff, Comparable<Doctor>{
     }
 
     public void viewPatientPrevAppointments(Patient patient) {
-        Stack<Appointment> prevAppointments = patient.appointments;
+        Stack<Appointment> prevAppointments = new Stack<>();
+        prevAppointments.addAll(patient.appointments);
         while (!prevAppointments.isEmpty()){
             System.out.println(prevAppointments.pop());
         }
@@ -52,7 +66,7 @@ public class Doctor extends AbstractPerson implements Staff, Comparable<Doctor>{
     }
 
     public void viewInpatients(HospitalManagementSystem system) {
-        Set<Map.Entry<String, Patient>> patients = system.patients.entrySet();
+        Set<Map.Entry<String, Patient>> patients = system.getPatients().entrySet();
         for(Map.Entry<String, Patient> patient : patients){
             if(patient.getValue().getStatus()){
                 System.out.println(patient.getValue());
@@ -61,13 +75,34 @@ public class Doctor extends AbstractPerson implements Staff, Comparable<Doctor>{
     }
 
     public void clearSchedule() {
-        Calendar calendar = Calendar.getInstance();
-        LocalDateTime today = LocalDateTime.of(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), 23, 59);
+        //LocalDateTime ldt = LocalDateTime.now();
+        //LocalDateTime today = LocalDateTime.of(ldt.getYear(), ldt.getMonth(), ldt.getDayOfMonth(), 23, 59);
+        LocalDateTime today = LocalDate.now().atTime(23, 59);
         appointments.removeIf(appointment -> appointment.time.compareTo(today) < 0);
     }
 
-    @Override
-    public int compareTo(Doctor o) {
-        return 0;
+    protected void syncSchedule(HospitalManagementSystem system){
+        LocalDateTime now = LocalDateTime.now();
+        if(now.getYear() < lastLoginDate.getYear() || now.getDayOfYear() < lastLoginDate.getDayOfYear()) {
+            PriorityQueue<Appointment> appointments = new PriorityQueue<>(system.getAllAppointments());
+            Appointment appointment;
+            while (!appointments.isEmpty() && (appointment = appointments.poll()).doctor.compareTo(this) == 0 &&
+                    appointment.time.getDayOfYear() == now.getDayOfYear() && !appointment.getStatus().equals("Completed")){
+                appointments.add(appointment);
+            }
+        }
+        else{
+            throw new IllegalStateException();
+        }
     }
+
+    protected void setLastLoginDate(){
+        lastLoginDate = LocalDateTime.now();
+    }
+
+    public int compareTo(Doctor o) {
+        return ID.compareTo(o.ID);
+    }
+
+
 }
