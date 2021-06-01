@@ -1,8 +1,13 @@
 import java.time.LocalDateTime;
 
+/** Class for Vaccine Appointments */
+
 public class VaccineAppointment extends Appointment{
+    // Data Fields
+    /** The Nurse with whom this appointment was made. */
     private Nurse nurse;
 
+    // Constructor
     public VaccineAppointment(Patient patient,Nurse nurse,LocalDateTime time) {
         setPatient(patient);
         this.nurse = nurse;

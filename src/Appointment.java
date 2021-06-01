@@ -1,12 +1,18 @@
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+/** Abstract Class for Hospital Appointments */
 public abstract class Appointment implements Serializable , Comparable<Appointment>{
+    // Data Fields
+
+    /** Patient who has taken this appointment.*/
     private Patient patient;
+    /** Time of Appointment */
     private LocalDateTime time;
+    /** Flag to indicate that the Appointment is confirmed by Receptionist or not. */
     private boolean confirmed;
 
-
+    // Getters and Setters
     public Patient getPatient() {
         return patient;
     }
