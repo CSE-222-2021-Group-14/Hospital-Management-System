@@ -1,7 +1,7 @@
 public class Administrator extends AbstractPerson implements Staff {
 
-    public Administrator(String name, String surname, String ID, String phoneNum) {
-        super(name, surname, ID, phoneNum);
+    public Administrator(String name, String surname, String ID, String phoneNum, String passwword) {
+        super(name, surname, ID, phoneNum,passwword);
     }
     void addBeds(int num, HospitalManagementSystem h){
 
