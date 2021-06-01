@@ -3,13 +3,12 @@ import java.util.Queue;
 import java.util.Stack;
 
 public class Patient extends AbstractPerson implements Comparable<Patient> {
-    Stack<Appointment> appointments;
-    Queue<Notification> notifications;
-    ArrayList<Prescription> prescriptions;
+    private Stack<Appointment> appointments;
+    private ArrayList<Prescription> prescriptions;
 
     private int age;
     private String bloodType;
-    private String sickness;
+    private ArrayList<String> disease;
 
     public int getAge() {
         return age;
@@ -19,8 +18,8 @@ public class Patient extends AbstractPerson implements Comparable<Patient> {
         return bloodType;
     }
 
-    public String getSickness() {
-        return sickness;
+    protected ArrayList<String> getDisease() {
+        return disease;
     }
 
     public Patient(String name, String surname, String ID, String phoneNum, String password){
@@ -41,15 +40,12 @@ public class Patient extends AbstractPerson implements Comparable<Patient> {
     }
 
     public void viewAppointments() {
-        for (Appointment appointment : appointments) {
-            System.out.println(appointment);
-        }
+        appointments.forEach(System.out::println);
+        //bossa bos diye print et
     }
 
-    public void viewPrescriptions() throws InvalidPrescriptionException {
-        for (Prescription prescription : prescriptions) {
-            System.out.println(prescription);
-        }
+    public void viewPrescriptions() {
+        prescriptions.forEach(System.out::println);
     }
 
     @Override

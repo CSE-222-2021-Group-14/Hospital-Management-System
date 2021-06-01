@@ -1,5 +1,5 @@
 public class Prescription {
-    //kullanım süresi ekle
+
     String medicine;
     int times;
     int measure;

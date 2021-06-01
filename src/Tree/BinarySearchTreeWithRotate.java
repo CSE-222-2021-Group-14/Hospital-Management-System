@@ -5,7 +5,7 @@ package Tree;
     tree while preserving the search tree property.
     Used as a common base class for self-balancing trees.
  */
-public class BinarySearchTreeWithRotate<E extends Comparable<E>>
+public class BinarySearchTreeWithRotate<E extends Comparable<? super E>>
         extends BinarySearchTree<E> {
 
     // Methods

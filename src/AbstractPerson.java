@@ -54,4 +54,14 @@ public abstract class AbstractPerson implements Person, Serializable{
         this.phoneNum = phoneNum;
         this.password = password;
     }
+
+    @Override
+    public String toString() {
+
+        return
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", ID='" + ID + '\'' +
+                ", phoneNum='" + phoneNum + '\'';
+    }
 }

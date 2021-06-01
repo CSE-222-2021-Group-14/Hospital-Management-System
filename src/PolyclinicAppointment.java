@@ -8,7 +8,7 @@ public class PolyclinicAppointment extends Appointment{
     /** The Department of Polyclinic. */
     private Department department;
     /** Status of Appointment */
-    private String status;
+    private boolean status; //if true than appointment must be finished.
 
     // Constructor
     public PolyclinicAppointment(Patient patient, Doctor doctor, LocalDateTime time,Department department) {
@@ -17,6 +17,7 @@ public class PolyclinicAppointment extends Appointment{
         setTime(time);
         setConfirmed(false);
         this.department = department;
+        status = false;
     }
 
     // Getters and Setters
@@ -28,11 +29,11 @@ public class PolyclinicAppointment extends Appointment{
         return department;
     }
 
-    public String getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 

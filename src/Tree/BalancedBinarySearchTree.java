@@ -1,7 +1,7 @@
 package Tree;
 
 /** Self-balancing binary search tree.*/
-public class BalancedBinarySearchTree<E extends Comparable<E>>
+public class BalancedBinarySearchTree<E extends Comparable<? super E>>
         extends BinarySearchTreeWithRotate<E> {
 
     /** Class to represent an AVL Node. It extends the
@@ -205,8 +205,6 @@ public class BalancedBinarySearchTree<E extends Comparable<E>>
             increase = false;
         }
     }
-
-
 
     /** remove started method.
      pre: the target to remove implements the Comparable interface.

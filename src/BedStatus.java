@@ -1,4 +1,4 @@
 public enum BedStatus {
-    FREE,
+    EMPTY,
     OCCUPIED
 }

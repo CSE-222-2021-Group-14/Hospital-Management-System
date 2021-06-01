@@ -2,7 +2,7 @@ package Tree;
 
 import java.util.Comparator;
 
-public class BinarySearchTree<E extends Comparable<E>> extends BinaryTree<E> implements SearchTree<E>{
+public class BinarySearchTree<E extends Comparable<? super E>> extends BinaryTree<E> implements SearchTree<E>{
     // Data Fields
     /** Return value from the public add method. */
     protected boolean addReturn;
