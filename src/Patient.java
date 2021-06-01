@@ -10,12 +10,21 @@ public class Patient extends AbstractPerson implements Comparable<Patient> {
     private int age;
     private String bloodType;
     private String sickness;
-    boolean isEmergency;
 
+    public int getAge() {
+        return age;
+    }
 
+    public String getBloodType() {
+        return bloodType;
+    }
 
-    public Patient(String name, String surname, String ID, String phoneNum){
-        super(name, surname, ID, phoneNum);
+    public String getSickness() {
+        return sickness;
+    }
+
+    public Patient(String name, String surname, String ID, String phoneNum, String password){
+        super(name, surname, ID, phoneNum, password);
         appointments = new Stack<>();
     }
 
@@ -52,7 +61,6 @@ public class Patient extends AbstractPerson implements Comparable<Patient> {
     public String toString(){
         StringBuilder s = new StringBuilder();
         s.append("Patient: Name = ").append(name).append(",Surname = ").append(surname).append(",ID = ").append(ID).append(",Phone Number = ").append(phoneNum);
-
         return s.toString();
     }
 }
