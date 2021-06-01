@@ -3,8 +3,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class Doctor extends AbstractPerson implements Staff, Comparable<Doctor>{
-    PriorityQueue<Appointment> appointments;//priority olucak
-    Queue<Notification> notifications;
+    PriorityQueue<Appointment> appointments;
     Department department;
     LocalDateTime lastLoginDate;
 
@@ -12,18 +11,8 @@ public class Doctor extends AbstractPerson implements Staff, Comparable<Doctor>{
         super(name, surname, ID, phoneNum, password);
         this.department = department;
         appointments = new PriorityQueue<>();
-        notifications = new ArrayDeque<>();
     }
 
-    public void viewNotifications(){
-        try {
-            while (!notifications.isEmpty()){
-                System.out.println(notifications.remove());
-            }
-        } catch (NoSuchElementException e) {
-            System.out.println("There is no notification to view");
-        }
-    }
 
     public Patient callPatient() {
         if(!appointments.isEmpty()) {

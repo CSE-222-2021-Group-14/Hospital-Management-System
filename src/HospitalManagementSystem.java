@@ -2,23 +2,29 @@ import java.io.*;
 import java.util.*;
 import java.util.concurrent.ConcurrentSkipListMap;
 
+//LOGIN DE SET KULLANILACAK -BURAK
+
 public class HospitalManagementSystem implements Serializable {
     private static final String RESET = "\u001B[0m";
     private static final String RED = "\u001B[31m";
     private static final String GREEN = "\u001B[32m";
-    private TreeMap<String, Doctor> doctors;// olucak
-    private TreeMap<String, Patient> patients;//hashmap olucak
-    private TreeMap<String, Receptionist> receptionists;//hashmap olucak
-    private TreeMap<String, Administrator> administrators;//hashmap olucak
-    private TreeMap<String, Nurse> nurses;//hashmap olucak
-    private PriorityQueue<Appointment> allAppointments;
+    private TreeMap<String, Doctor> doctors;
+    private TreeMap<String, Patient> patients;
+    private TreeMap<String, Receptionist> receptionists;
+    private TreeMap<String, Administrator> administrators;
+    private TreeMap<String, Nurse> nurses;
+    private ArrayList<Bed> dorm;
     private int vaccineAge;
 
-    public int getVaccineAge() {
+    protected int getVaccineAge() {
         return vaccineAge;
     }
 
-    public void setVaccineAge(int vaccineAge) {
+    protected ArrayList<Bed> getDorm() {
+        return dorm;
+    }
+
+    protected void setVaccineAge(int vaccineAge) {
         this.vaccineAge = vaccineAge;
     }
 
@@ -26,11 +32,11 @@ public class HospitalManagementSystem implements Serializable {
         //deserialize(this);
     }
 
-    public Patient findPatient(String ID) throws NoSuchElementException{
+    public Patient findPatient(String ID){
         return patients.get(ID);
     }
 
-    public Doctor findDoctor(String ID) throws NoSuchElementException{
+    public Doctor findDoctor(String ID){
         return doctors.get(ID);
     }
 
@@ -52,10 +58,6 @@ public class HospitalManagementSystem implements Serializable {
 
     protected TreeMap<String, Receptionist> getReceptionists() {
         return receptionists;
-    }
-
-    protected PriorityQueue<Appointment> getAllAppointments() {
-        return allAppointments;
     }
 
     protected TreeMap<String, Nurse> getNurses() {
