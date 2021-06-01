@@ -2,7 +2,7 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 /** Class for The User which is Hospital Nurses*/
-public class Nurse extends AbstractPerson implements Staff {
+public class Nurse extends AbstractPerson implements Staff, Comparable<Nurse> {
 
     // Data Fields
     /** Patients those need take caring.*/
@@ -13,7 +13,7 @@ public class Nurse extends AbstractPerson implements Staff {
 
     // Constructor
     public Nurse(String name, String surname, String ID, String password, String phoneNum) {
-        super(name, surname, ID, password,phoneNum);
+        super(name, surname, ID,phoneNum, password);
         appointments = new PriorityQueue<Appointment>();
     }
 
@@ -47,5 +47,10 @@ public class Nurse extends AbstractPerson implements Staff {
                 ", requests=" + requests +
                 ", appointments=" + appointments +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Nurse o) {
+        return getID().compareTo(o.getID());
     }
 }

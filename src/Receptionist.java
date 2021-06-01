@@ -10,8 +10,8 @@ public class Receptionist extends AbstractPerson implements Staff, Comparable<Re
     /** newPatientRegistration method adds new patient to system with given parameters.
      */
     public Patient newPatientRegistration(String name, String surname, String ID,String password, String phoneNum, HospitalManagementSystem system) {
-        Patient newPatient = new Patient(name, surname, ID,password, phoneNum);
-        system.patients.add(newPatient);
+        Patient newPatient = new Patient(name, surname, ID, phoneNum,password);
+        system.getPatients().put(ID,newPatient);
         return newPatient;
     }
 
