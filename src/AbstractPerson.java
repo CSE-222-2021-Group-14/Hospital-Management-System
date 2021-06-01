@@ -5,6 +5,7 @@ public abstract class AbstractPerson implements Person, Serializable{
     String surname;
     String ID;
     String phoneNum;
+    String password;
 
     public String getName() {
         return name;
@@ -20,6 +21,10 @@ public abstract class AbstractPerson implements Person, Serializable{
 
     public String getPhoneNum() {
         return phoneNum;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public void setName(String name) {
@@ -38,10 +43,15 @@ public abstract class AbstractPerson implements Person, Serializable{
         this.phoneNum = phoneNum;
     }
 
-    public AbstractPerson(String name, String surname, String ID, String phoneNum) {
+    public void setPassword(String password){
+        this.password = password;
+    }
+
+    public AbstractPerson(String name, String surname, String ID, String phoneNum, String password) {
         this.name = name;
         this.surname = surname;
         this.ID = ID;
         this.phoneNum = phoneNum;
+        this.password = password;
     }
 }
