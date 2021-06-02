@@ -1,13 +1,27 @@
+import java.util.Map;
+
 public class Administrator extends AbstractPerson implements Staff {
 
     public Administrator(String name, String surname, String ID, String phoneNum, String passwword) {
         super(name, surname, ID, phoneNum,passwword);
     }
+
+    /**
+     * Add new bed to the hospital dorm.
+     * @param num number of new beds.
+     * @param h is the hospital management system
+     */
     void addBed(int num, HospitalManagementSystem h){
         for (int i = 0; i < num; i++) {
             h.getDorm().add(new Bed());
         }
     }
+
+    /**
+     * Remove beds from the hospital dorm.
+     * @param num number of the beds that will be removed.
+     * @param h is the hospital management system.
+     */
     void removeBed(int num,HospitalManagementSystem h){
         if (h.getDorm().size() - h.getOccupiedBedNum() - num >= 0){
             int i = 0,j = 0;
@@ -25,17 +39,34 @@ public class Administrator extends AbstractPerson implements Staff {
         else
             System.out.println("There are no " + num +" empty bed!");
     }
+
+    /**
+     * Prints all staff in the hospital except admins.
+     * @param h is the hospital managements system
+     */
     void viewAllStaff(HospitalManagementSystem h){
         System.out.println("Doctors:");
-        //traverse map then to string
-        System.out.println(h.getDoctors().toString());
+        for (Map.Entry<String,Doctor> entry: h.getDoctors().entrySet()) {
+            System.out.println(entry.getValue());
+        }
         System.out.println("************************************");
         System.out.println("Nurses:");
-        System.out.println(h.getNurses().toString());
+        for (Map.Entry<String,Nurse> entry: h.getNurses().entrySet()) {
+            System.out.println(entry.getValue());
+        }
         System.out.println("************************************");
         System.out.println("Receptionists:");
-        System.out.println(h.getReceptionists().toString());
+        for (Map.Entry<String,Receptionist> entry: h.getReceptionists().entrySet()) {
+            System.out.println(entry.getValue());
+        }
     }
+
+    /**
+     * Prints specific staff infos.
+     * @param ID is the identification number of the staff.
+     * @param mod is the number that selecting the stuff role.
+     * @param h is the hospital management system.
+     */
     void viewSpecificStaff(String ID, int mod, HospitalManagementSystem h){
         //menude mod iste(1,2,3)
         if (mod == 1)
@@ -47,10 +78,21 @@ public class Administrator extends AbstractPerson implements Staff {
         else
             System.out.println(h.getReceptionists().get(ID).toString());
     }
+
+    /**
+     * Shows occupancy rate of the dorm.
+     * @param h is the hospital management system.
+     */
     void viewDormStatus(HospitalManagementSystem h){
         float status = (float)(h.getOccupiedBedNum()/ h.getDorm().size()) * 100;
         System.out.println("Dorm occupancy rate is %" + status);
     }
+
+    /**
+     * Hires the incoming staff for hospital.
+     * @param staff is who will be hired.
+     * @param h is the hospital management system.
+     */
     void hireStaff(Staff staff, HospitalManagementSystem h){
         if (staff != null && h != null){
             if (staff instanceof Doctor)
@@ -65,6 +107,12 @@ public class Administrator extends AbstractPerson implements Staff {
         else
             System.out.println("Staff could not hire!");
     }
+
+    /**
+     * Fires the incoming staff from  hospital.
+     * @param staff is who will be fired.
+     * @param h is the hospital management system.
+     */
     void fireStaff(Staff staff, HospitalManagementSystem h){
         try {
             if (staff instanceof Doctor)
@@ -79,6 +127,12 @@ public class Administrator extends AbstractPerson implements Staff {
             System.out.println("Staff could not fire!");
         }
     }
+
+    /**
+     * Sets vaccine age limit.
+     * @param age is the limit age.
+     * @param h is the hospital management system.
+     */
     void setVaccineAge(int age, HospitalManagementSystem h){
         h.setVaccineAge(age);
     }
