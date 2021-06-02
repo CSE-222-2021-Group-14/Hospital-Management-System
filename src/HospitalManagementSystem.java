@@ -15,6 +15,7 @@ public class HospitalManagementSystem implements Serializable {
     private TreeMap<String, Nurse> nurses;
     private ArrayList<Bed> dorm;
     private int vaccineAge;
+    private int occupiedBedNum;
 
     protected int getVaccineAge() {
         return vaccineAge;

@@ -22,16 +22,16 @@ public class Administrator extends AbstractPerson implements Staff {
         System.out.println("Receptionists:");
         System.out.println(h.getReceptionists().toString());
     }
-    void viewSpecificStaff(String ID, int mod){
+    void viewSpecificStaff(String ID, int mod, HospitalManagementSystem h){
         //menude mod iste(1,2,3)
-        if (staff instanceof Doctor)
-            System.out.println(h.getDoctors().get(staff.getID()).toString());
+        if (mod == 1)
+            System.out.println(h.getDoctors().get(ID).toString());
 
-        else if (staff instanceof Nurse)
-            System.out.println(h.getNurses().get(staff.getID()).toString());
+        else if (mod == 2)
+            System.out.println(h.getNurses().get(ID).toString());
 
         else
-            System.out.println(h.getReceptionists().get(staff.getID()).toString());
+            System.out.println(h.getReceptionists().get(ID).toString());
     }
     void viewDormStatus(){
         //listeyi gez bolu dos say oranla
