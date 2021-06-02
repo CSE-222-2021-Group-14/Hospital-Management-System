@@ -9,7 +9,21 @@ public class Administrator extends AbstractPerson implements Staff {
         }
     }
     void removeBed(int num,HospitalManagementSystem h){
-        //num kadar bos yatak varsa kaldir
+        if (h.getDorm().size() - h.getOccupiedBedNum() - num >= 0){
+            int i = 0,j = 0;
+            while (i < h.getDorm().size()){
+                if (h.getDorm().get(i).getBedStatus() == BedStatus.EMPTY) {
+                    h.getDorm().remove(i);
+                    j++;
+                }
+                if (j == num)
+                    break;
+
+                i++;
+            }
+        }
+        else
+            System.out.println("There are no " + num +" empty bed!");
     }
     void viewAllStaff(HospitalManagementSystem h){
         System.out.println("Doctors:");
@@ -33,8 +47,9 @@ public class Administrator extends AbstractPerson implements Staff {
         else
             System.out.println(h.getReceptionists().get(ID).toString());
     }
-    void viewDormStatus(){
-        //listeyi gez bolu dos say oranla
+    void viewDormStatus(HospitalManagementSystem h){
+        float status = (float)(h.getOccupiedBedNum()/ h.getDorm().size()) * 100;
+        System.out.println("Dorm occupancy rate is %" + status);
     }
     void hireStaff(Staff staff, HospitalManagementSystem h){
         if (staff != null && h != null){
