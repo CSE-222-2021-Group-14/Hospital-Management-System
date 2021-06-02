@@ -17,6 +17,14 @@ public class HospitalManagementSystem implements Serializable {
     private int vaccineAge;
     private int occupiedBedNum;
 
+    protected int getOccupiedBedNum() {
+        return occupiedBedNum;
+    }
+
+    protected void setOccupiedBedNum(int occupiedBedNum) {
+        this.occupiedBedNum = occupiedBedNum;
+    }
+
     protected int getVaccineAge() {
         return vaccineAge;
     }
