@@ -48,10 +48,6 @@ public class Doctor extends AbstractPerson implements Staff, Comparable<Doctor>{
         }
     }
 
-    /*public void setPatientStatus(Patient patient, int mode) {
-        patient.setStatus(mode == 1);
-    }*/
-
     public void viewInpatients(HospitalManagementSystem system) {
         for(Bed bed : system.getDorm()){
             if(bed.getBedStatus().equals(BedStatus.OCCUPIED)){
@@ -65,28 +61,18 @@ public class Doctor extends AbstractPerson implements Staff, Comparable<Doctor>{
         appointments.removeIf(appointment -> appointment.getTime().compareTo(today) < 0);
     }
 
-    /*protected void syncSchedule(HospitalManagementSystem system){
-        LocalDateTime now = LocalDateTime.now();
-        if(now.getYear() < lastLoginDate.getYear() || now.getDayOfYear() < lastLoginDate.getDayOfYear()) {
-            PriorityQueue<Appointment> appointments = new PriorityQueue<>(system.getAllAppointments());
-            Appointment appointment;
-            while (!appointments.isEmpty() && (appointment = appointments.poll()).doctor.compareTo(this) == 0 &&
-                    appointment.time.getDayOfYear() == now.getDayOfYear() && !appointment.getStatus().equals("Completed")){
-                appointments.add(appointment);
-            }
-        }
-        else{
-            throw new IllegalStateException();
-        }
+    protected boolean add(Appointment newAppointment){
+        return appointments.add(newAppointment);
     }
-
-    protected void setLastLoginDate(){
-        lastLoginDate = LocalDateTime.now();
-    }*/
 
     public int compareTo(Doctor o) {
         return ID.compareTo(o.ID);
     }
 
-
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        s.append("Doctor\n").append(super.toString());
+        return s.toString();
+    }
 }
