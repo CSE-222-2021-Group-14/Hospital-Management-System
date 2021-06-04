@@ -57,11 +57,9 @@ public abstract class AbstractPerson implements Person, Serializable{
 
     @Override
     public String toString() {
-
-        return
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", ID='" + ID + '\'' +
-                ", phoneNum='" + phoneNum + '\'';
+        StringBuilder s = new StringBuilder();
+        s.append("name: ").append(name).append("\nsurname: ").append(surname).append("\nID: ").append(ID);
+        s.append("\nphoneNum: ").append(phoneNum);
+        return s.toString();
     }
 }
