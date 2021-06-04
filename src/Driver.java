@@ -9,7 +9,7 @@ public class Driver {
         //map.forEach((k, v) -> System.out.println("key:" + k + " value:" + v));
     }
 
-    private static HospitalManagementSystem deserialize(HospitalManagementSystem system) throws IOException, ClassNotFoundException {
+    /*private static HospitalManagementSystem deserialize(HospitalManagementSystem system) throws IOException, ClassNotFoundException {
         File file = new File("tmp/data.ser");
         FileInputStream fileIn = new FileInputStream(file);
         ObjectInputStream in = new ObjectInputStream(fileIn);
@@ -17,5 +17,5 @@ public class Driver {
         in.close();
         fileIn.close();
         return system;
-    }
+    }*/
 }

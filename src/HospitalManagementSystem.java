@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.*;
-import java.util.concurrent.ConcurrentSkipListMap;
 
 //LOGIN DE SET KULLANILACAK -BURAK
 
@@ -14,6 +13,7 @@ public class HospitalManagementSystem implements Serializable {
     private TreeMap<String, Administrator> administrators;
     private TreeMap<String, Nurse> nurses;
     private ArrayList<Bed> dorm;
+    private TreeSet<String> IDs;
     private int vaccineAge;
     private int occupiedBedNum;
 
@@ -38,7 +38,7 @@ public class HospitalManagementSystem implements Serializable {
     }
 
     public HospitalManagementSystem() throws IOException, ClassNotFoundException {
-        //deserialize(this);
+
     }
 
     public Patient findPatient(String ID){
@@ -77,7 +77,7 @@ public class HospitalManagementSystem implements Serializable {
 
     }
 
-    private Person signIn(int mode){
+    private Person signIn(){
         String ID;
         String name;
         String surname;
@@ -93,7 +93,7 @@ public class HospitalManagementSystem implements Serializable {
             }
             ID = scanner.nextLine();
             counter++;
-        } while (ID.length() != 11);
+        } while (ID.length() != 11 || !ID.matches("\\d+") || !IDs.add(ID));
 
         System.out.println("Please enter your name");
         name = scanner.nextLine();
@@ -103,34 +103,8 @@ public class HospitalManagementSystem implements Serializable {
         password = scanner.nextLine();
         System.out.println("Please enter your phone number");
         phoneNum = getValidPhoneNum(scanner);
-
-        switch (mode) {
-            case 1 -> {
-                patients.put(ID, new Patient(name, surname, ID, password, phoneNum));
-                return patients.get(ID);
-            }
-            case 2 -> {
-                int i = 1;
-                System.out.println("Please choose your department");
-                for (Department department : Department.values()) {
-                    System.out.println(i + ")" + department);
-                }
-                doctors.put(ID, new Doctor(name, surname, ID, phoneNum, password, Department.values()[getValidInput(scanner, 1, 8) - 1]));
-                return doctors.get(ID);
-            }
-            case 3 -> {
-                administrators.put(ID, new Administrator(name, surname, ID, phoneNum, password));
-                return administrators.get(ID);
-            }
-            case 4 -> {
-                receptionists.put(ID, new Receptionist(name, surname, ID, phoneNum, password));
-                return receptionists.get(ID);
-            }
-            default -> {
-                nurses.put(ID, new Nurse(name, surname, ID, phoneNum, password));
-                return nurses.get(ID);
-            }
-        }
+        patients.put(ID, new Patient(name, surname, ID, password, phoneNum));
+        return patients.get(ID);
     }
 
     private String getValidPhoneNum(Scanner scanner){
