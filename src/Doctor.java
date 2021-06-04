@@ -3,9 +3,8 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class Doctor extends AbstractPerson implements Staff, Comparable<Doctor>{
-    PriorityQueue<Appointment> appointments;
-    Department department;
-    LocalDateTime lastLoginDate;
+    private PriorityQueue<Appointment> appointments;
+    private Department department;
 
     public Doctor(String name, String surname, String ID, String phoneNum, String password, Department department) {
         super(name, surname, ID, phoneNum, password);
@@ -15,18 +14,17 @@ public class Doctor extends AbstractPerson implements Staff, Comparable<Doctor>{
 
 
     public Patient callPatient() {
-        if(!appointments.isEmpty()) {
-            return appointments.poll().patient;
+        LocalDateTime today = LocalDate.now().atTime(23, 59);
+        if(!appointments.isEmpty() && appointments.peek().getTime().compareTo(today) < 0) {
+            return appointments.poll().getPatient();
         }
         return null;
     }
 
     public void viewAppointments() {
-        //LocalDateTime ldt = LocalDateTime.now();
-        //LocalDateTime today = LocalDateTime.of(ldt.getYear(), ldt.getMonth(), ldt.getDayOfMonth(), 23, 59);
         LocalDateTime today = LocalDate.now().atTime(23, 59);
         for(Appointment i : appointments){
-            if(i.time.compareTo(today) < 0){
+            if(i.getTime().compareTo(today) < 0){
                 System.out.println(i);
             }
         }
@@ -35,42 +33,39 @@ public class Doctor extends AbstractPerson implements Staff, Comparable<Doctor>{
     public void viewPatientMedicalInfo(Patient patient) {
         System.out.println("Surname: " + patient.surname);
         System.out.println("Name: " + patient.name);
-        System.out.println("Blood Type: " + patient.bloodType);
+        System.out.println("Blood Type: " + patient.getBloodType());
         System.out.println("Known Diseases: ");
-        for(String disease : patient.getDiseases()){
+        for(String disease : patient.getDisease()){
             System.out.println(disease);
         }
     }
 
     public void viewPatientPrevAppointments(Patient patient) {
         Stack<Appointment> prevAppointments = new Stack<>();
-        prevAppointments.addAll(patient.appointments);
+        prevAppointments.addAll(patient.getAppointments());
         while (!prevAppointments.isEmpty()){
             System.out.println(prevAppointments.pop());
         }
     }
 
-    public void setPatientStatus(Patient patient, int mode) {
+    /*public void setPatientStatus(Patient patient, int mode) {
         patient.setStatus(mode == 1);
-    }
+    }*/
 
     public void viewInpatients(HospitalManagementSystem system) {
-        Set<Map.Entry<String, Patient>> patients = system.getPatients().entrySet();
-        for(Map.Entry<String, Patient> patient : patients){
-            if(patient.getValue().getStatus()){
-                System.out.println(patient.getValue());
+        for(Bed bed : system.getDorm()){
+            if(bed.getBedStatus().equals(BedStatus.OCCUPIED)){
+                System.out.println(bed.getPatient());
             }
         }
     }
 
     public void clearSchedule() {
-        //LocalDateTime ldt = LocalDateTime.now();
-        //LocalDateTime today = LocalDateTime.of(ldt.getYear(), ldt.getMonth(), ldt.getDayOfMonth(), 23, 59);
         LocalDateTime today = LocalDate.now().atTime(23, 59);
-        appointments.removeIf(appointment -> appointment.time.compareTo(today) < 0);
+        appointments.removeIf(appointment -> appointment.getTime().compareTo(today) < 0);
     }
 
-    protected void syncSchedule(HospitalManagementSystem system){
+    /*protected void syncSchedule(HospitalManagementSystem system){
         LocalDateTime now = LocalDateTime.now();
         if(now.getYear() < lastLoginDate.getYear() || now.getDayOfYear() < lastLoginDate.getDayOfYear()) {
             PriorityQueue<Appointment> appointments = new PriorityQueue<>(system.getAllAppointments());
@@ -87,7 +82,7 @@ public class Doctor extends AbstractPerson implements Staff, Comparable<Doctor>{
 
     protected void setLastLoginDate(){
         lastLoginDate = LocalDateTime.now();
-    }
+    }*/
 
     public int compareTo(Doctor o) {
         return ID.compareTo(o.ID);
