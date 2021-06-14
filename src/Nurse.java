@@ -1,18 +1,56 @@
+import java.util.PriorityQueue;
 import java.util.Queue;
 
-public class Nurse extends AbstractPerson implements Staff {
+/** Class for The User which is Hospital Nurses*/
+public class Nurse extends AbstractPerson implements Staff, Comparable<Nurse> {
 
-    static Queue<Patient> requests;
+    // Data Fields
+    /** Patients those need take caring.*/
+    private  Queue<Patient> requests;
 
-    static Queue<Appointment> appointments; //Priority Queue olacak
+    /** Vaccine Appointments */
+    private  PriorityQueue<Appointment> appointments;
 
-    public Nurse(String name, String surname, String ID, String phoneNum) {
-        super(name, surname, ID, phoneNum);
+    // Constructor
+    public Nurse(String name, String surname, String ID, String password, String phoneNum) {
+        super(name, surname, ID,phoneNum, password);
+        appointments = new PriorityQueue<Appointment>();
     }
 
-    public void vaccinate(){} //Siradaki asi olacak kisiyi appointments dan poplar.
+    /** Vaccinates head of queue and removes him/her from queue. */
+    public void vaccinate(){
+        VaccineAppointment appointment = (VaccineAppointment) appointments.poll();
+    }
 
-    public void  takeCare(){} // Requestden pop yapar.
+    /** Take cares head of queue and removes him/her from queue. */
+    public void  takeCare(){
+        Patient patient = requests.poll();
+    }
 
+    /** add method.
+        @param appointment The appointment being inserted.
+        @return true if appointment inserting in queue is successful,
+                otherwise false.
+     */
+    public boolean add(Appointment appointment){
+        return (appointments.add(appointment));
+    }
 
+    @Override
+    public String toString() {
+        return "Nurse{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", ID='" + ID + '\'' +
+                ", password='" + password + '\'' +
+                ", phoneNum='" + phoneNum + '\'' +
+                ", requests=" + requests +
+                ", appointments=" + appointments +
+                '}';
+    }
+
+    @Override
+    public int compareTo(Nurse o) {
+        return getID().compareTo(o.getID());
+    }
 }
