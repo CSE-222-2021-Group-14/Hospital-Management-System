@@ -1,5 +1,6 @@
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Scanner;
 
 /** Class for The User which is Hospital Nurses*/
 public class Nurse extends AbstractPerson implements Staff, Comparable<Nurse> {
@@ -52,5 +53,25 @@ public class Nurse extends AbstractPerson implements Staff, Comparable<Nurse> {
     @Override
     public int compareTo(Nurse o) {
         return getID().compareTo(o.getID());
+    }
+
+    public void menuOfNurse () {
+        Scanner sc = new Scanner(System.in);
+        String choice = "M";
+        while (!choice.equals("E") && !choice.equals("e")) {
+            System.out.println("[ ] Please make a choice :");
+            System.out.println("[ ] Nurse Menu");
+            System.out.println("[1] Vaccinate Patient");
+            System.out.println("[2] Take Care Patient");
+            System.out.println("[E] Exit]");
+            choice = sc.nextLine();
+            switch (choice) {
+                case "1" : { vaccinate(); break; }
+                case "2" : { takeCare(); break; }
+                case "E" : { System.out.println("[ ] You are exiting!"); break; }
+                case "e" : { System.out.println("[ ] You are exiting!"); break; }
+                default : { System.out.println("[ ] Please make a correct choice!"); break; }
+            }
+        }
     }
 }
