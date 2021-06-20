@@ -10,7 +10,7 @@ public class HospitalManagementSystem implements Serializable {
     private TreeMap<String, Doctor> doctors;
     private TreeMap<String, Patient> patients;
     private TreeMap<String, Receptionist> receptionists;
-    private TreeMap<String, Administrator> administrators;
+    private Administrator administrator;
     private TreeMap<String, Nurse> nurses;
     private ArrayList<Bed> dorm;
     private TreeSet<String> IDs;
@@ -37,7 +37,7 @@ public class HospitalManagementSystem implements Serializable {
         this.vaccineAge = vaccineAge;
     }
 
-    public HospitalManagementSystem() throws IOException, ClassNotFoundException {
+    public HospitalManagementSystem(){
 
     }
 
@@ -74,10 +74,64 @@ public class HospitalManagementSystem implements Serializable {
     }
 
     public void runSystem(){
+        Scanner scanner = new Scanner(System.in);
+        int choice = 0;
 
+        while (choice != 6){
+            System.out.println("Please choose user type\n1)Patient\n2)Doctor\n3)Administrator\n4)Receptionist\n5)Nurse\n6)Exit");
+            choice = getValidInput(scanner, 1, 6);
+
+            switch (choice){
+                case 1 -> {
+                    Patient patient;
+                    System.out.println("Please choose an entry type\n1)Login\n2)SignIn");
+                    int entry = getValidInput(scanner, 1, 2);
+                    if(entry == 1) patient = (Patient) login(1);
+                    else patient = signIn();
+                }
+                case 2 -> {
+                    Doctor doctor = (Doctor) login(2);
+                }
+                case 3 -> {
+                    Administrator admin = (Administrator) login(3);
+                }
+                case 4 -> {
+                    Receptionist receptionist = (Receptionist) login(4);
+                }
+                case 5 -> {
+                    Nurse nurse = (Nurse) login(5);
+                }
+                default -> System.out.println("GOODBYE");
+            }
+        }
     }
 
-    private Person signIn(){
+    private Person login(int mode){
+        Scanner scanner = new Scanner(System.in);
+        String ID;
+        String password;
+        Person person = null;
+        AbstractPerson tmp;
+
+        while (person == null) {
+            System.out.println("Please enter your ID");
+            ID = getValidID(scanner);
+            System.out.println("Please enter your password");
+            password = scanner.nextLine();
+
+            switch (mode){
+                case 1 -> person = ((tmp = patients.get(ID)) == null || tmp.password.equals(password)) ? null : tmp;
+                case 2 -> person = ((tmp = doctors.get(ID)) == null || tmp.password.equals(password)) ? null : tmp;
+                case 3 -> person = (!administrator.ID.equals(ID) || !administrator.password.equals(password)) ? null : administrator;
+                case 4 -> person = ((tmp = receptionists.get(ID)) == null || tmp.password.equals(password)) ? null : tmp;
+                case 5 -> person = ((tmp = nurses.get(ID)) == null || tmp.password.equals(password)) ? null : tmp;
+            }
+        }
+
+        return person;
+    }
+
+    private Patient signIn(){
         String ID;
         String name;
         String surname;
@@ -88,12 +142,8 @@ public class HospitalManagementSystem implements Serializable {
 
         System.out.println("Please enter your ID");
         do{
-            if(counter != 0){
-                System.out.println(RED + "Your ID must be eleven-digit long" + RESET);
-            }
-            ID = scanner.nextLine();
-            counter++;
-        } while (ID.length() != 11 || !ID.matches("\\d+") || !IDs.add(ID));
+            ID = getValidID(scanner);
+        } while (!IDs.add(ID));
 
         System.out.println("Please enter your name");
         name = scanner.nextLine();
@@ -105,6 +155,21 @@ public class HospitalManagementSystem implements Serializable {
         phoneNum = getValidPhoneNum(scanner);
         patients.put(ID, new Patient(name, surname, ID, password, phoneNum));
         return patients.get(ID);
+    }
+
+    private String getValidID(Scanner scanner){
+        String ID;
+        int counter = 0;
+
+        do{
+            if(counter != 0){
+                System.out.println(RED + "Your ID must be eleven-digit long" + RESET);
+            }
+            ID = scanner.nextLine();
+            counter++;
+        } while (ID.length() != 11 || !ID.matches("\\d+"));
+
+        return ID;
     }
 
     private String getValidPhoneNum(Scanner scanner){
