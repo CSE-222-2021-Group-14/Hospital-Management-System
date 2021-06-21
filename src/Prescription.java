@@ -46,7 +46,7 @@ public class Prescription {
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
-        s.append("Prescription: medicine = ").append(medicine).append(", usage = ").append(measure);
+        s.append("Medicine = ").append(medicine).append(", Usage = ").append(measure);
 
         if(measure == 1){
             s.append(" measure ");

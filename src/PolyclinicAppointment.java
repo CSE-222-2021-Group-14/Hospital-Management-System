@@ -8,7 +8,7 @@ public class PolyclinicAppointment extends Appointment{
     /** The Department of Polyclinic. */
     private Department department;
     /** Status of Appointment */
-    private boolean status; //if true than appointment must be finished.
+    private StatusType status; //if true than appointment must be finished.
 
     // Constructor
     public PolyclinicAppointment(Patient patient, Doctor doctor, LocalDateTime time,Department department) {
@@ -17,7 +17,7 @@ public class PolyclinicAppointment extends Appointment{
         setTime(time);
         setConfirmed(false);
         this.department = department;
-        status = false;
+        status = StatusType.EMPTY;
     }
 
     // Getters and Setters
@@ -29,11 +29,11 @@ public class PolyclinicAppointment extends Appointment{
         return department;
     }
 
-    public boolean getStatus() {
+    public StatusType getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(StatusType status) {
         this.status = status;
     }
 
@@ -53,4 +53,8 @@ public class PolyclinicAppointment extends Appointment{
     public int compareTo(Appointment o) {
         return this.getTime().compareTo(o.getTime());
     }
+}
+
+enum StatusType{
+    EMPTY, TAKEN, CANCELLED, FINISHED;
 }
