@@ -4,20 +4,15 @@ import java.time.LocalDateTime;
 public class PolyclinicAppointment extends Appointment{
     // Data Fields
     /** The Doctor with whom this appointment was made. */
-    private Doctor doctor;
+    private final Doctor doctor;
     /** The Department of Polyclinic. */
-    private Department department;
-    /** Status of Appointment */
-    private StatusType status; //if true than appointment must be finished.
+    private final Department department;
 
     // Constructor
     public PolyclinicAppointment(Patient patient, Doctor doctor, LocalDateTime time,Department department) {
-        setPatient(patient);
+        super(patient, time);
         this.doctor = doctor;
-        setTime(time);
-        setConfirmed(false);
         this.department = department;
-        status = StatusType.EMPTY;
     }
 
     // Getters and Setters
@@ -29,32 +24,18 @@ public class PolyclinicAppointment extends Appointment{
         return department;
     }
 
-    public StatusType getStatus() {
-        return status;
-    }
-
-    public void setStatus(StatusType status) {
-        this.status = status;
-    }
-
     @Override
     public String toString() {
-        return "PolyclinicAppointment{" +
-                "patient=" + getPatient() +
-                ", time=" + getTime() +
-                ", confirmed=" + isConfirmed() +
-                ", doctor=" + doctor +
-                ", department=" + department +
-                ", status='" + status + '\'' +
-                '}';
+        StringBuilder s = new StringBuilder();
+        s.append("Doctor: ").append(doctor.getName()).append(" ").append(doctor.getSurname()).append("\nDepartment: ");
+        String d = department.toString().toLowerCase();
+        d = d.substring(0, 1).toUpperCase() + d.substring(1);
+        s.append(d).append("\n").append(super.toString());
+        return s.toString();
     }
 
     @Override
     public int compareTo(Appointment o) {
         return this.getTime().compareTo(o.getTime());
     }
-}
-
-enum StatusType{
-    EMPTY, TAKEN, CANCELLED, FINISHED;
 }
