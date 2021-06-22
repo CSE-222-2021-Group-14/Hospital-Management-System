@@ -20,8 +20,10 @@ public class Driver {
             }
             System.out.println(dtf.format(doctor.appointments.get(i).getTime()));
         }*/
-        Doctor doctor = new Doctor("a","b", "c", "d", "e", Department.DERMATOLOGY);
-        System.out.println(doctor);
+        //Doctor doctor = new Doctor("a","b", "c", "d", "e", Department.DERMATOLOGY);
+        //System.out.println(doctor);
+        Staff staff = new Doctor("a","a","a","a","a", Department.DERMATOLOGY);
+        System.out.println(staff);
     }
 
     /*private static HospitalManagementSystem deserialize(HospitalManagementSystem system) throws IOException, ClassNotFoundException {
