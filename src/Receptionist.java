@@ -1,4 +1,6 @@
 import java.util.NoSuchElementException;
+import java.util.Scanner;
+
 /** Class for The User which is Hospital Receptionist*/
 public class Receptionist extends AbstractPerson implements Staff, Comparable<Receptionist> {
 
@@ -8,11 +10,19 @@ public class Receptionist extends AbstractPerson implements Staff, Comparable<Re
     }
 
     /** newPatientRegistration method adds new patient to system with given parameters.
+     * @param name Patient name
+     * @param surname Patient surname
+     * @param ID Patient ID
+     * @param password Patient system password
+     * @param phoneNum Patient phone number
+     * @param system Hospital Management System
+     * @return true if patient registration is successful,
+     *          otherwise false.
      */
-    public Patient newPatientRegistration(String name, String surname, String ID,String password, String phoneNum, HospitalManagementSystem system) {
+    public boolean newPatientRegistration(String name, String surname, String ID,String password, String phoneNum, HospitalManagementSystem system) {
         Patient newPatient = new Patient(name, surname, ID, phoneNum,password);
         system.getPatients().put(ID,newPatient);
-        return newPatient;
+        return (system.getPatients().get(ID) != null);
     }
 
     /** confirmAppointments method.
@@ -28,24 +38,11 @@ public class Receptionist extends AbstractPerson implements Staff, Comparable<Re
         try{
             // Finds patient with ID from system
             patient = system.findPatient(ID);
-
-            PolyclinicAppointment polyclinicAppointment;
-            VaccineAppointment vaccineAppointment;
             for(Appointment appointment : patient.getAppointments())
                 if(!appointment.isConfirmed()){
                     // Appointments those need to be confirmed
-                    if(appointment instanceof PolyclinicAppointment) {  // Polyclinic Appointments
-                        polyclinicAppointment = (PolyclinicAppointment) appointment;
-                        // Adding appointment to Doctor's appointment queue
-                        confirmed=polyclinicAppointment.getDoctor().add(polyclinicAppointment);
-                        polyclinicAppointment.setConfirmed(confirmed);
-                    }
-                    else if(appointment instanceof VaccineAppointment)   {  // Vaccine Appointments
-                        vaccineAppointment = (VaccineAppointment) appointment;
-                        // Adding appointment to Nurse's appointment queue
-                        confirmed=vaccineAppointment.getNurse().add(vaccineAppointment);
-                        vaccineAppointment.setConfirmed(confirmed);
-                    }
+                    appointment.setConfirmed(true);
+                    confirmed = true;
                 }
         }
         catch (NoSuchElementException e){

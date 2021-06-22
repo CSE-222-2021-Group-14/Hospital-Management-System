@@ -164,7 +164,7 @@ public class BinarySearchTree<E extends Comparable<? super E>> extends BinaryTre
         @param parent The parent of possible inorder predecessor (ip)
         @return The data in the ip
      */
-    public E findLargestChild(Node<E> parent){
+    private E findLargestChild(Node<E> parent){
         // If the right child has no right child, it is
         // the inorder predecessor.
         if (parent.right.right == null){

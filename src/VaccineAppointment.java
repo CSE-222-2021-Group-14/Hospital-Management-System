@@ -5,27 +5,21 @@ import java.time.LocalDateTime;
 public class VaccineAppointment extends Appointment{
     // Data Fields
     /** The Nurse with whom this appointment was made. */
-    private Nurse nurse;
+    private final Nurse nurse;
 
     // Constructor
     public VaccineAppointment(Patient patient,Nurse nurse,LocalDateTime time) {
-        setPatient(patient);
+        super(patient, time);
         this.nurse = nurse;
-        setTime(time);
-        setConfirmed(false);
     }
 
     public Nurse getNurse() {
         return nurse;
     }
 
-
     @Override
     public String toString() {
-        return "VaccineAppointment{" +
-                "confirmed=" + isConfirmed() +
-                ", nurse=" + nurse +
-                '}';
+        return "Nurse: " + nurse.getName() + " " + nurse.getSurname() + "\n" + super.toString();
     }
 
     @Override
