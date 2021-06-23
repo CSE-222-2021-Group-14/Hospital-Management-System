@@ -14,9 +14,13 @@ public enum Department {
         this.numVal = numVal;
     }
 
+    public int getNumVal() {
+        return numVal;
+    }
+
     static void printDepartments(){
         for (Department d: Department.values()) {
-            System.out.println(d.numVal + ")" + d);
+            System.out.println(d.numVal + ")" + (d.toString().substring(0, 1).toUpperCase() + d.toString().substring(1).toLowerCase()));
         }
     }
 }

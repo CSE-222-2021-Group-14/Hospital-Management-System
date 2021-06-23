@@ -1,7 +1,4 @@
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Class that represent a SkipList.
@@ -31,6 +28,16 @@ public class SkipList<E extends Comparable<E>> implements Iterable<E>{
      */
     public Iterator<E> iterator() {
         return new SkipListIter();
+    }
+
+    public ListIterator<E> listIterator(){
+        ArrayList<E> arrayList = new ArrayList<>();
+        /*Iterator<E> iterator = iterator();
+        while (iterator.hasNext()){
+            arrayList.add(iterator().next());
+        }*/
+        this.forEach(arrayList::add);
+        return arrayList.listIterator();
     }
 
     /**
@@ -116,6 +123,10 @@ public class SkipList<E extends Comparable<E>> implements Iterable<E>{
         else{
             return null;
         }
+    }
+
+    public boolean isEmpty(){
+        return size == 0;
     }
 
     /**

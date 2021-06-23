@@ -1,7 +1,8 @@
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import Graph.DijkstrasAlgorithm;
+import Graph.Edge;
+import Graph.ListGraph;
+
+import java.io.*;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -20,10 +21,12 @@ public class Driver {
             }
             System.out.println(dtf.format(doctor.appointments.get(i).getTime()));
         }*/
-        //Doctor doctor = new Doctor("a","b", "c", "d", "e", Department.DERMATOLOGY);
-        //System.out.println(doctor);
-        Staff staff = new Doctor("a","a","a","a","a", Department.DERMATOLOGY);
-        System.out.println(staff);
+        /*HospitalManagementSystem system = new HospitalManagementSystem();
+        int[][] result = system.dijkstra();
+        int[] parent = result[0];
+        int[] distance = result[1];
+        System.out.println("\nparent array\n" + Arrays.toString(parent));
+        System.out.println("\ndistance array\n" + Arrays.toString(distance));*/
     }
 
     /*private static HospitalManagementSystem deserialize(HospitalManagementSystem system) throws IOException, ClassNotFoundException {
@@ -35,4 +38,13 @@ public class Driver {
         fileIn.close();
         return system;
     }*/
+    public void defaultUsers(){
+        try {
+            ArrayList<String> names = new ArrayList<>();
+            ArrayList<String> surnames = new ArrayList<>();
+            FileWriter fileWriter = new FileWriter("DefaultUsers/default_patients.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
