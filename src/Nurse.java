@@ -10,17 +10,22 @@ public class Nurse extends AbstractPerson implements Staff, Comparable<Nurse> {
     private  Queue<Patient> requests;
 
     /** Vaccine Appointments */
-    private  PriorityQueue<Appointment> appointments;
+    private  PriorityQueue<VaccineAppointment> appointments;
 
     // Constructor
     public Nurse(String name, String surname, String ID, String password, String phoneNum) {
         super(name, surname, ID,phoneNum, password);
-        appointments = new PriorityQueue<Appointment>();
+        appointments = new PriorityQueue<>();
     }
 
     /** Vaccinates head of queue and removes him/her from queue. */
     public void vaccinate(){
-        VaccineAppointment appointment = (VaccineAppointment) appointments.poll();
+        VaccineAppointment appointment = appointments.poll();
+        appointment.setStatus(StatusType.FINISHED);
+    }
+
+    public int getAppointmentNumber() {
+        return appointments.size();
     }
 
     /** Take cares head of queue and removes him/her from queue. */
@@ -33,7 +38,7 @@ public class Nurse extends AbstractPerson implements Staff, Comparable<Nurse> {
         @return true if appointment inserting in queue is successful,
                 otherwise false.
      */
-    public boolean add(Appointment appointment){
+    public boolean add(VaccineAppointment appointment){
         return (appointments.add(appointment));
     }
 

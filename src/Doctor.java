@@ -6,7 +6,8 @@ import java.util.*;
 public class Doctor extends AbstractPerson implements Staff, Comparable<Doctor>{
     private final LinkedList<PolyclinicAppointment> appointments;
     private final Department department;
-    private ListIterator<PolyclinicAppointment> appointmentIterator;
+    //private Iterator<PolyclinicAppointment> appointmentIterator;
+    private int patientCount = 0;
 
     public Doctor(String name, String surname, String ID, String phoneNum, String password, Department department) {
         super(name, surname, ID, phoneNum, password);
@@ -33,34 +34,44 @@ public class Doctor extends AbstractPerson implements Staff, Comparable<Doctor>{
             date = date.plusDays(1).toLocalDate().atTime(9, 0);
         }
 
-        appointmentIterator = appointments.listIterator();
+        //appointmentIterator = appointments.iterator();
     }
 
+    protected void reconfigurePatientQueue(){
+        patientCount = 0;
+        //appointmentIterator = appointments.iterator();
+    }
 
-    public Patient callPatient() {
-        LocalDateTime today = LocalDate.now().atTime(23, 59);
+    public PolyclinicAppointment callNextAppointment() {
+        /*LocalDateTime today = LocalDate.now().atTime(23, 59);
         PolyclinicAppointment appointment = appointmentIterator.next();
 
         while (appointment.getTime().compareTo(today) < 0 && !appointment.isConfirmed() &&
                 !appointment.getStatus().equals(StatusType.TAKEN)){
             appointment = appointmentIterator.next();
         }
-        /*while ((appointment = appointments.get(patientCount)).getTime().compareTo(today) < 0
+        while ((appointment = appointments.get(patientCount)).getTime().compareTo(today) < 0
                 && !appointment.isConfirmed() && !appointment.getStatus().equals(StatusType.TAKEN)){
             patientCount++;
         }
-        return appointments.get(patientCount).getPatient();*/
+        return appointments.get(patientCount).getPatient();
         if(appointment.getTime().compareTo(today) > 0){
             appointmentIterator.previous();
             return null;
         }
-        return appointment.getPatient();
+        return appointment.getPatient();*/
+        if(patientCount == 14) throw new NoSuchElementException();
+        return appointments.get(patientCount++);
+        //return appointmentIterator.next();
     }
 
     public void viewAppointments() {
         Iterator<PolyclinicAppointment> iterator = appointments.iterator();
         for(int i = 0; i < 14; i++){
-            System.out.println(iterator.next());
+            PolyclinicAppointment appointment = iterator.next();
+            if(appointment.getStatus().equals(StatusType.TAKEN)){
+                System.out.println(appointment);
+            }
         }
     }
 
@@ -70,7 +81,7 @@ public class Doctor extends AbstractPerson implements Staff, Comparable<Doctor>{
         for(String disease: patient.getDisease()){
             System.out.println("-" + disease);
         }
-        System.out.println("Previous prescriptions:");
+        System.out.println("Previous Prescriptions:");
         for(Prescription prescription : patient.getPrescriptions()){
             System.out.println("-" + prescription);
         }
@@ -78,9 +89,12 @@ public class Doctor extends AbstractPerson implements Staff, Comparable<Doctor>{
 
     public void viewPatientPrevAppointments(Patient patient) {
         Stack<Appointment> prevAppointments = new Stack<>();
-        prevAppointments.addAll(patient.getAppointments());
+        patient.getAppointments().forEach(prevAppointments::push);
         while (!prevAppointments.isEmpty()){
-            System.out.println(prevAppointments.pop());
+            if(prevAppointments.peek().getStatus().equals(StatusType.FINISHED)){
+                System.out.println(prevAppointments.pop());
+            }
+            else prevAppointments.pop();
         }
     }
 

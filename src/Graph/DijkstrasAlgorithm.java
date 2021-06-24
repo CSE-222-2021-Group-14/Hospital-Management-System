@@ -8,13 +8,13 @@ import java.util.*;
 
 public class DijkstrasAlgorithm {
 
-  /** Dijkstra�s Shortest-Path algorithm.
-      @param graph The weighted graph to be searched
-      @param start The start vertex
-      @param pred Output array to contain the predecessors
-                  in the shortest path
-      @param dist Output array to contain the distance
-                  in the shortest path
+  /** Dijkstra's Shortest-Path algorithm.
+   @param graph The weighted graph to be searched
+   @param start The start vertex
+   @param pred Output array to contain the predecessors
+   in the shortest path
+   @param dist Output array to contain the distance
+   in the shortest path
    */
   public static void dijkstrasAlgorithm(Graph graph,
                                         int start,
@@ -22,20 +22,22 @@ public class DijkstrasAlgorithm {
                                         double[] dist) {
     int numV = graph.getNumV();
     HashSet < Integer > vMinusS = new HashSet < Integer > (numV);
-    // Initialize V�S.
+    // Initialize V-S.
     for (int i = 0; i < numV; i++) {
       if (i != start) {
         vMinusS.add(i);
       }
     }
+
+    Arrays.fill(pred, -1);
     // Initialize pred and dist.
     for (int v : vMinusS) {
-      pred[v] = start;
+      if(graph.isEdge(start, v)) pred[v] = start;
       dist[v] = graph.getEdge(start, v).getWeight();
     }
     // Main loop
     while (vMinusS.size() != 0) {
-      // Find the value u in V�S with the smallest dist[u].
+      // Find the value u in V-S with the smallest dist[u].
       double minDist = Double.POSITIVE_INFINITY;
       int u = -1;
       for (int v : vMinusS) {
@@ -44,6 +46,7 @@ public class DijkstrasAlgorithm {
           u = v;
         }
       }
+      if(u == -1) break;
       // Remove u from vMinusS.
       vMinusS.remove(u);
       // Update the distances.

@@ -27,10 +27,12 @@ public class PolyclinicAppointment extends Appointment{
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
-        s.append("Doctor: ").append(doctor.getName()).append(" ").append(doctor.getSurname()).append("\nDepartment: ");
+        s.append("Type: Polyclinic Appointment\n").append(super.toString()).append("Doctor: ").append(doctor.getName()).
+                append(" ").append(doctor.getSurname()).append("\nDepartment: ").append(department);
+        /*s.append("Doctor: ").append(doctor.getName()).append(" ").append(doctor.getSurname()).append("\nDepartment: ");
         String d = department.toString().toLowerCase();
         d = d.substring(0, 1).toUpperCase() + d.substring(1);
-        s.append(d).append("\n").append(super.toString());
+        s.append(d).append("\n").append(super.toString());*/
         return s.toString();
     }
 
