@@ -5,11 +5,10 @@ import java.io.IOException;
 
 public class ReadFromFile {
     public void readFromFile(HospitalManagementSystem system) throws IOException {
-        File doctorFile = new File("doctors");
-        File patientFile = new File("patients");
-        File receptionistFile = new File("receptionists");
-        File adminFile = new File("administrator");
-        File nurseFile = new File("nurses");
+        File doctorFile = new File("default_user/doctors");
+        File patientFile = new File("default_user/patients");
+        File receptionistFile = new File("default_user/receptionists");
+        File nurseFile = new File("default_user/nurses");
         BufferedReader bufferedReader = new BufferedReader(new FileReader(doctorFile));
         String row;
         String[] data;
@@ -40,7 +39,7 @@ public class ReadFromFile {
             for(int i=0;i< data.length;i++)
                 system.getReceptionists().put(data[2],new Receptionist(data[0],data[1],data[2],data[3],data[4]));
         }
-        bufferedReader = new BufferedReader(new FileReader(receptionistFile));
+        bufferedReader = new BufferedReader(new FileReader(nurseFile));
         row = null;
         data = null;
         while ((row = bufferedReader.readLine()) != null){
@@ -49,16 +48,6 @@ public class ReadFromFile {
             data = row.split("\t");
             for(int i=0;i< data.length;i++)
                 system.getNurses().put(data[2],new Nurse(data[0],data[1],data[2],data[3],data[4]));
-        }
-        bufferedReader = new BufferedReader(new FileReader(adminFile));
-        row = null;
-        data = null;
-        if ((row = bufferedReader.readLine()) != null){
-            if(row.length()>=5) {
-                data = row.split("\t");
-                /**for (int i = 0; i < data.length; i++)
-                    system.setAdministrator(new Administrator(data[0], data[1], data[2], data[3], data[4]));*/
-            }
         }
         bufferedReader.close();
     }
