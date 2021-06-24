@@ -12,7 +12,7 @@ public class Nurse extends AbstractPerson implements Staff, Comparable<Nurse> {
     private  PriorityQueue<VaccineAppointment> appointments;
 
     // Constructor
-    public Nurse(String name, String surname, String ID, String password, String phoneNum) {
+    public Nurse(String name, String surname, String ID, String phoneNum, String password) {
         super(name, surname, ID,phoneNum, password);
         appointments = new PriorityQueue<>();
     }

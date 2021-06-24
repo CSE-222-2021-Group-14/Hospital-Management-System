@@ -1,5 +1,4 @@
 import java.util.NoSuchElementException;
-import java.util.Scanner;
 
 /** Class for The User which is Hospital Receptionist*/
 public class Receptionist extends AbstractPerson implements Staff, Comparable<Receptionist> {
@@ -19,8 +18,10 @@ public class Receptionist extends AbstractPerson implements Staff, Comparable<Re
      * @return true if patient registration is successful,
      *          otherwise false.
      */
-    public boolean newPatientRegistration(String name, String surname, String ID,String password, String phoneNum, HospitalManagementSystem system) {
+    public boolean newPatientRegistration(String name, String surname, String ID,String phoneNum, String password, HospitalManagementSystem system) {
         Patient newPatient = new Patient(name, surname, ID, phoneNum,password);
+        if (system.getPatients().get(ID) != null)
+            return false;
         system.getPatients().put(ID,newPatient);
         return (system.getPatients().get(ID) != null);
     }
@@ -50,6 +51,9 @@ public class Receptionist extends AbstractPerson implements Staff, Comparable<Re
         }
         return confirmed;
     }
+
+
+
 
     @Override
     public int compareTo(Receptionist o) {
