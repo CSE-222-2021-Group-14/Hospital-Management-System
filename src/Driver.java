@@ -1,15 +1,9 @@
-import Graph.DijkstrasAlgorithm;
-import Graph.Edge;
-import Graph.ListGraph;
-
-import java.io.*;
-import java.time.DayOfWeek;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class Driver {
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException {
         //map.forEach((k, v) -> System.out.println("key:" + k + " value:" + v));
         /*Calendar c = Calendar.getInstance();
         System.out.println(c.get(Calendar.DAY_OF_WEEK));*/
@@ -27,6 +21,8 @@ public class Driver {
         int[] distance = result[1];
         System.out.println("\nparent array\n" + Arrays.toString(parent));
         System.out.println("\ndistance array\n" + Arrays.toString(distance));*/
+        HospitalManagementSystem system = new HospitalManagementSystem();
+        system.runSystem();
     }
 
     /*private static HospitalManagementSystem deserialize(HospitalManagementSystem system) throws IOException, ClassNotFoundException {

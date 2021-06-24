@@ -1,11 +1,12 @@
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 
 class ReceptionistTest {
 
     @Test
-    void newPatientRegistration() {
+    void newPatientRegistration() throws IOException {
         // Main System
         HospitalManagementSystem system = new HospitalManagementSystem();
         // Receptionist for using its methods
@@ -24,7 +25,7 @@ class ReceptionistTest {
     }
 
     @Test
-    void confirmAppointments() {
+    void confirmAppointments() throws IOException {
         // Main System
         HospitalManagementSystem system = new HospitalManagementSystem();
         // Receptionist for using its methods
