@@ -52,7 +52,7 @@ class ReceptionistTest {
         patient.addAppointment(appointment);
         // Method checks if patient has not confirmed appointments , if has then confirms appointments  otherwise prints already confirmed.
         if (receptionist.confirmAppointments("84532", system))
-            System.out.println("Appointments are confirmed.");
+            System.out.println("Non-confirmed appointments are confirmed.");
         else
             System.out.println("Appointments are already confirmed.");
     }
