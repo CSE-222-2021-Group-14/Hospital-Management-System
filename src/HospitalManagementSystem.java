@@ -2,13 +2,14 @@ import Graph.DijkstrasAlgorithm;
 import Graph.Edge;
 import Graph.ListGraph;
 
-import java.io.*;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.stream.DoubleStream;
-import java.util.stream.IntStream;
 
 //LOGIN DE SET KULLANILACAK -BURAK
 
@@ -48,7 +49,7 @@ public class HospitalManagementSystem implements Serializable {
         this.vaccineAge = vaccineAge;
     }
 
-    public HospitalManagementSystem(){
+    public HospitalManagementSystem() throws IOException {
         int randomWeight;
         Random random = new Random();
         mapOfHospital = new ListGraph(11, false);
@@ -68,6 +69,12 @@ public class HospitalManagementSystem implements Serializable {
                 }
             }
         }
+        doctors = new TreeMap<>();
+        patients = new TreeMap<>();
+        receptionists = new TreeMap<>();
+        nurses = new TreeMap<>();
+        administrator = new Administrator("Erdoğan", "Sevilgen", "71649093147", "05294791354", "13575110904");
+        ReadFromFile.readFromFile(this);
     }
 
     public Patient findPatient(String ID){
@@ -264,7 +271,7 @@ public class HospitalManagementSystem implements Serializable {
                     Administrator admin = (Administrator) tmp;
                     System.out.println(GREEN + "Login successful" + RESET);
                     int select = 0;
-                    while (select != 5) {
+                    while (select != 6) {
                         System.out.println("Administrator Menu\nWelcome " + admin.getName() + " " + admin.getSurname() +
                                 "\n1)View Dorm Status\n2)Hire Staff\n3)Fire Staff\n4)View A Staff\n5)Set The Vaccination Age" +
                                 "\n6)Exit");
@@ -399,6 +406,7 @@ public class HospitalManagementSystem implements Serializable {
                             case 2 -> {
                                 String patientID;
                                 int iteration = 0;
+                                System.out.println("Patient ID:");
                                 do{
                                     if(iteration != 0){
                                         System.out.println(RED + "There is no patient with this ID" + RESET);
@@ -411,6 +419,7 @@ public class HospitalManagementSystem implements Serializable {
                             }
                             case 3 -> {
                                 String patientID;
+                                System.out.println("Patient ID:");
                                 do{
                                     patientID = getValidID(scanner);
                                 } while (patients.get(patientID) == null);
@@ -421,7 +430,7 @@ public class HospitalManagementSystem implements Serializable {
                             }
                             case 4 -> System.out.println("Returning To The Main Menu");
                         }
-                    }while (functionality != 5);
+                    }while (functionality != 4);
                 }
                 case 5 -> {
                     int counter = 0;
@@ -469,7 +478,6 @@ public class HospitalManagementSystem implements Serializable {
             ID = getValidID(scanner);
             System.out.println("Please enter your password");
             password = scanner.nextLine();
-
             switch (mode){
                 case 1 -> person = ((tmp = patients.get(ID)) == null || !tmp.password.equals(password)) ? null : tmp;
                 case 2 -> person = ((tmp = doctors.get(ID)) == null || !tmp.password.equals(password)) ? null : tmp;
