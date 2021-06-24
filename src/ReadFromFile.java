@@ -56,8 +56,8 @@ public class ReadFromFile {
         if ((row = bufferedReader.readLine()) != null){
             if(row.length()>=5) {
                 data = row.split("\t");
-                for (int i = 0; i < data.length; i++)
-                    system.setAdministrator(new Administrator(data[0], data[1], data[2], data[3], data[4]));
+                /**for (int i = 0; i < data.length; i++)
+                    system.setAdministrator(new Administrator(data[0], data[1], data[2], data[3], data[4]));*/
             }
         }
         bufferedReader.close();
