@@ -22,13 +22,16 @@ public abstract class Appointment implements Serializable , Comparable<Appointme
         status = StatusType.EMPTY;
     }
 
-    // Getters and Setters
     public Patient getPatient() {
         return patient;
     }
 
     public LocalDateTime getTime() {
         return time;
+    }
+
+    public StatusType getStatus() {
+        return status;
     }
 
     public boolean isConfirmed() {
@@ -43,19 +46,16 @@ public abstract class Appointment implements Serializable , Comparable<Appointme
         this.status = status;
     }
 
-    public StatusType getStatus() {
-        return status;
-    }
-
-    @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM yyyy   HH:mm");
-        s.append("Patient: ").append(patient.getName()).append(" ").append(patient.getSurname()).append("\n");
+        s.append("Time: ").append(dtf.format(time)).append("\nPatient: ").append(patient.getName()).append(" ")
+                .append(patient.getSurname()).append("\n");
+        /*s.append("Patient: ").append(patient.getName()).append(" ").append(patient.getSurname()).append("\n");
         s.append("Time: ").append(dtf.format(time)).append("\n").append("Status: ");
         String statusLower = status.toString().toLowerCase();
         statusLower = statusLower.substring(0, 1).toUpperCase() + statusLower.substring(1);
-        s.append(statusLower).append("\nConfirmed: ").append(confirmed).append("\n");
+        s.append(statusLower).append("\nConfirmed: ").append(confirmed).append("\n");*/
         return s.toString();
     }
 }

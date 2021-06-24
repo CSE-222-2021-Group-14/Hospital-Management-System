@@ -19,7 +19,10 @@ public class VaccineAppointment extends Appointment{
 
     @Override
     public String toString() {
-        return "Nurse: " + nurse.getName() + " " + nurse.getSurname() + "\n" + super.toString();
+        StringBuilder s = new StringBuilder();
+        s.append("Type: Vaccine Appointment\n").append(super.toString()).append("Nurse: ").append(nurse.getName()).
+                append(" ").append(nurse.getSurname()).append("\n");
+        return s.toString();
     }
 
     @Override
