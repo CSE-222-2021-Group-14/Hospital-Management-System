@@ -18,7 +18,7 @@ public class Receptionist extends AbstractPerson implements Staff, Comparable<Re
      * @return true if patient registration is successful,
      *          otherwise false.
      */
-    public boolean newPatientRegistration(String name, String surname, String ID,String password, String phoneNum, HospitalManagementSystem system) {
+    public boolean newPatientRegistration(String name, String surname, String ID,String phoneNum, String password, HospitalManagementSystem system) {
         Patient newPatient = new Patient(name, surname, ID, phoneNum,password);
         if (system.getPatients().get(ID) != null)
             return false;
