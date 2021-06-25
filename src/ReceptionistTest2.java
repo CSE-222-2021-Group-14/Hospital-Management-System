@@ -1,4 +1,6 @@
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
+
+import java.time.LocalDateTime;
 
 class ReceptionistTest2 {
 
@@ -9,10 +11,10 @@ class ReceptionistTest2 {
      * Constructs receptionist and hospital management objects.
      * Adds patient to system.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     void newPatientRegistration() {
         System.out.println("Begin Test #"+22);
-        Receptionist r = new Receptionist(("TestReceptionistName", "TestReceptionistSurname", "00111222333", "05554443322", "12345678"););
+        Receptionist r = new Receptionist(("TestReceptionistName", "TestReceptionistSurname", "00111222333", "05554443322", "12345678");
         HospitalManagementSystem hms = new HospitalManagementSystem();
         r.newPatientRegistration("TestPatientName", "TestPatientSurname", "00111222334", "5554443323", "12345678", hms);
         System.out.println("Receptionist ID : "+r.getID());
@@ -33,11 +35,9 @@ class ReceptionistTest2 {
         Receptionist r = new Receptionist(("TestReceptionistName", "TestReceptionistSurname", "00111222333", "05554443322", "12345678"););
         HospitalManagementSystem hms = new HospitalManagementSystem();
         Patient p = new Patient("TestPatientName", "TestPatientSurname", "00111222334", "05554443323", "12345678");
-        Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222335", "05554443324", "12345678");
-        // look here xxx
-        LocalDateTime time = null;
-        Department department = DERMATOLOGY;
-        PolyclinicAppointment pa = new PolyclinicAppointment(p, d, time, department);
+        Department department = Department.DERMATOLOGY;
+        Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222335", "05554443324", "12345678", department);
+        PolyclinicAppointment pa = new PolyclinicAppointment(p, d, LocalDateTime.now(), department);
         p.addAppointment(pa);
         // look here xxx
         r.confirmAppointments("00111222334", hms);

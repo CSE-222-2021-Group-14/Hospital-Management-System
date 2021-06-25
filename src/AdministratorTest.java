@@ -1,4 +1,4 @@
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
 
 class AdministratorTest {
     /**
@@ -8,7 +8,7 @@ class AdministratorTest {
      * Constructs administrator and hospital management system objects, and defines number of beds to add.
      * Adds num times beds to dorm.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     void addBed() {
         System.out.println("Begin Test #"+1);
         Administrator a = new Administrator("TestAdminName", "TestAdminSurname", "00111222333", "05554443322", "12345678");
@@ -27,7 +27,7 @@ class AdministratorTest {
      * Constructs administrator and hospital management system objects, and defines number of beds to remove.
      * Removes num times beds from dorm.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     void removeBed() {
         System.out.println("Begin Test #"+2);
         Administrator a = new Administrator("TestAdminName", "TestAdminSurname", "00111222333", "05554443322", "12345678");
@@ -48,7 +48,7 @@ class AdministratorTest {
      * Constructs administrator and hospital management system objects.
      * Lists all staffs.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     void viewAllStaff() {
         System.out.println("Begin Test #"+3);
         Administrator a = new Administrator("TestAdminName", "TestAdminSurname", "00111222333", "05554443322", "12345678");
@@ -72,7 +72,7 @@ class AdministratorTest {
      * Constructs administrator and hospital management system objects, and defines a string id and int mod.
      * Prints specific staff's information.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     void viewSpecificStaff() {
         System.out.println("Begin Test #"+4);
         Administrator a = new Administrator("TestAdminName", "TestAdminSurname", "00111222333", "05554443322", "12345678");
@@ -99,7 +99,7 @@ class AdministratorTest {
      * Constructs administrator and hospital management system objects.
      * Prints dorm status.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     void viewDormStatus() {
         System.out.println("Begin Test #"+5);
         Administrator a = new Administrator("TestAdminName", "TestAdminSurname", "00111222333", "05554443322", "12345678");
@@ -121,7 +121,7 @@ class AdministratorTest {
      * Constructs administrator, staff and hospital management system objects.
      * Hired staff to system.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     void hireStaff() {
         System.out.println("Begin Test #"+6);
         Administrator a = new Administrator("TestAdminName", "TestAdminSurname", "00111222333", "05554443322", "12345678");
@@ -146,7 +146,7 @@ class AdministratorTest {
      * Constructs administrator, staff and hospital management system objects.
      * Fired staff from system.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     void fireStaff() {
         System.out.println("Begin Test #"+7);
         Administrator a = new Administrator("TestAdminName", "TestAdminSurname", "00111222333", "05554443322", "12345678");
