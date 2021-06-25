@@ -1,4 +1,6 @@
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
+
+import java.time.LocalDateTime;
 
 class DoctorTest {
 
@@ -9,15 +11,13 @@ class DoctorTest {
      * Constructs doctor object.
      * Calls next appointment, increases patient's count.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     void callNextAppointment() {
         System.out.println("Begin Test #"+8);
         Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222333", "05554443322", "12345678");
         Patient p = new Patient("TestPatientName", "TestPatientSurname", "00111222334", "05554443323", "12345678");
-        // look here xxx
-        LocalDateTime time = null;
-        Department department = DERMATOLOGY;
-        PolyclinicAppointment pa = new PolyclinicAppointment(p, d, time, department);
+        Department department = 0;
+        PolyclinicAppointment pa = new PolyclinicAppointment(p, d, LocalDateTime.now(), department);
         d.add(pa);
         d.callNextAppointment();
         System.out.println("Doctor ID   : "+d.getID());
@@ -32,15 +32,13 @@ class DoctorTest {
      * Constructs doctor object.
      * Lists doctor's appointments.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     void viewAppointments() {
         System.out.println("Begin Test #"+9);
         Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222333", "05554443322", "12345678");
         Patient p = new Patient("TestPatientName", "TestPatientSurname", "00111222334", "05554443323", "12345678");
-        // look here xxx
-        LocalDateTime time = null;
-        Department department = DERMATOLOGY;
-        PolyclinicAppointment pa = new PolyclinicAppointment(p, d, time, department);
+        Department department = 0;
+        PolyclinicAppointment pa = new PolyclinicAppointment(p, d, LocalDateTime.now(), department);
         d.add(pa);
         d.viewAppointments();
         System.out.println("Doctor ID   : "+d.getID());
@@ -55,7 +53,7 @@ class DoctorTest {
      * Constructs doctor and patient objects.
      * Prints patient's medical information.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     void viewPatientMedicalInfo() {
         System.out.println("Begin Test #"+10);
         Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222333", "05554443322", "12345678");
@@ -73,15 +71,13 @@ class DoctorTest {
      * Constructs doctor and patient objects.
      * Prints patient's previous appointments.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     void viewPatientPrevAppointments() {
         System.out.println("Begin Test #"+11);
         Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222333", "05554443322", "12345678");
         Patient p = new Patient("TestPatientName", "TestPatientSurname", "00111222334", "05554443323", "12345678");
-        // look here xxx
-        LocalDateTime time = null;
-        Department department = DERMATOLOGY;
-        PolyclinicAppointment pa = new PolyclinicAppointment(p, d, time, department);
+        Department department = 0;
+        PolyclinicAppointment pa = new PolyclinicAppointment(p, d, LocalDateTime.now(), department);
         d.add(pa);
         d.callNextAppointment();
         d.viewPatientPrevAppointments(p);
@@ -97,7 +93,7 @@ class DoctorTest {
      * Constructs doctor and hospital managements system objects.
      * Lists all inpatients.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     void viewInpatients() {
         System.out.println("Begin Test #"+12);
         Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222333", "05554443322", "12345678");
@@ -115,15 +111,13 @@ class DoctorTest {
      * Constructs doctor object.
      * Clears doctor's all schedule.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     void clearSchedule() {
         System.out.println("Begin Test #"+13);
         Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222333", "05554443322", "12345678");
         Patient p = new Patient("TestPatientName", "TestPatientSurname", "00111222334", "05554443323", "12345678");
-        // look here xxx
-        LocalDateTime time = null;
-        Department department = DERMATOLOGY;
-        PolyclinicAppointment pa = new PolyclinicAppointment(p, d, time, department);
+        Department department = 0;
+        PolyclinicAppointment pa = new PolyclinicAppointment(p, d, LocalDateTime.now(), department);
         d.add(pa);
         d.viewAppointments();
         d.clearSchedule();
@@ -140,15 +134,13 @@ class DoctorTest {
      * Constructs doctor and polyclinic appointment objects.
      * Adds appointment to schedule.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     void add() {
         System.out.println("Begin Test #"+14);
         Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222333", "05554443322", "12345678");
         Patient p = new Patient("TestPatientName", "TestPatientSurname", "00111222334", "05554443323", "12345678");
-        // look here xxx
-        LocalDateTime time = null;
-        Department department = DERMATOLOGY;
-        PolyclinicAppointment pa = new PolyclinicAppointment(p, d, time, department);
+        Department department = 0;
+        PolyclinicAppointment pa = new PolyclinicAppointment(p, d, LocalDateTime.now(), department);
         d.viewAppointments();
         d.add(pa);
         d.viewAppointments();

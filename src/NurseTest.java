@@ -1,6 +1,6 @@
-import java.time.LocalDateTime;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.time.LocalDateTime;
 
 class NurseTest {
 
@@ -11,13 +11,11 @@ class NurseTest {
      * Constructs patient, localdatetime, appointment (vaccine appointment) and nurse objects.
      * Adds last vaccine appointment to nurse's appointments priority queue.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     void vaccinate() {
         Nurse n = new Nurse("TestNurseName", "TestNurseSurname", "00111222333", "05554443322", "12345678");
         Patient p = new Patient("TestPatientName", "TestPatientSurname", "00111222334", "05554443323", "12345678");
-        // look here xxx
-        LocalDateTime time = null;
-        VaccineAppointment va = new VaccineAppointment(p, n, time);
+        VaccineAppointment va = new VaccineAppointment(p, n, LocalDateTime.now());
         n.add(va);
         n.vaccinate();
         System.out.println("Test #"+15);
@@ -32,7 +30,7 @@ class NurseTest {
      * Constructs patient, localdatetime and nurse objects.
      * Adds patient p who requested take care to nurse's requests queue.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     void takeCare() {
         Nurse n = new Nurse("TestNurseName", "TestNurseSurname", "00111222333", "05554443322", "12345678");
         n.takeCare();
@@ -48,13 +46,11 @@ class NurseTest {
      * Constructs patient, localdatetime, appointment (type vaccine appointment) and nurse objects.
      * Adds appointment to nurse's appointments priority queue.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     void add() {
         Nurse n = new Nurse("TestNurseName", "TestNurseSurname", "00111222333", "05554443322", "12345678");
         Patient p = new Patient("TestPatientName", "TestPatientSurname", "00111222334", "05554443323", "12345678");
-        // look here xxx
-        LocalDateTime time = null;
-        VaccineAppointment va = new VaccineAppointment(p, n, time);
+        VaccineAppointment va = new VaccineAppointment(p, n, LocalDateTime.now());
         n.add(va);
         System.out.println("Test #"+17);
         System.out.println("Nurse ID    : "+n.getID());
