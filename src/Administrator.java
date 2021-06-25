@@ -121,8 +121,12 @@ public class Administrator extends AbstractPerson implements Staff {
      * @param h is the hospital management system.
      */
     void viewDormStatus(HospitalManagementSystem h){
-        float status = (float)(h.getOccupiedBedNum()/ h.getDorm().size()) * 100;
-        System.out.println("Dorm occupancy rate is %" + status);
+        if (h.getDorm().size() > 0) {
+            float status = (float) (h.getOccupiedBedNum() / h.getDorm().size()) * 100;
+            System.out.println("Dorm occupancy rate is %" + status);
+        }
+        else
+            System.out.println("There is no bed in the dorm!");
     }
 
     /**
