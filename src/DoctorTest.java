@@ -1,5 +1,6 @@
 import org.junit.Test;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 
 class DoctorTest {
@@ -14,9 +15,9 @@ class DoctorTest {
     @Test
     void callNextAppointment() {
         System.out.println("Begin Test #"+8);
-        Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222333", "05554443322", "12345678");
+        Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222333", "05554443322", "12345678", Department.DERMATOLOGY);
         Patient p = new Patient("TestPatientName", "TestPatientSurname", "00111222334", "05554443323", "12345678");
-        Department department = 0;
+        Department department = Department.DERMATOLOGY;
         PolyclinicAppointment pa = new PolyclinicAppointment(p, d, LocalDateTime.now(), department);
         d.add(pa);
         d.callNextAppointment();
@@ -35,9 +36,9 @@ class DoctorTest {
     @Test
     void viewAppointments() {
         System.out.println("Begin Test #"+9);
-        Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222333", "05554443322", "12345678");
+        Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222333", "05554443322", "12345678", Department.DERMATOLOGY);
         Patient p = new Patient("TestPatientName", "TestPatientSurname", "00111222334", "05554443323", "12345678");
-        Department department = 0;
+        Department department = Department.DERMATOLOGY;
         PolyclinicAppointment pa = new PolyclinicAppointment(p, d, LocalDateTime.now(), department);
         d.add(pa);
         d.viewAppointments();
@@ -56,7 +57,7 @@ class DoctorTest {
     @Test
     void viewPatientMedicalInfo() {
         System.out.println("Begin Test #"+10);
-        Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222333", "05554443322", "12345678");
+        Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222333", "05554443322", "12345678", Department.DERMATOLOGY);
         Patient p = new Patient("TestPatientName", "TestPatientSurname", "00111222334", "05554443323", "12345678");
         d.viewPatientMedicalInfo(p);
         System.out.println("Doctor ID   : "+d.getID());
@@ -74,9 +75,9 @@ class DoctorTest {
     @Test
     void viewPatientPrevAppointments() {
         System.out.println("Begin Test #"+11);
-        Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222333", "05554443322", "12345678");
+        Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222333", "05554443322", "12345678", Department.DERMATOLOGY);
         Patient p = new Patient("TestPatientName", "TestPatientSurname", "00111222334", "05554443323", "12345678");
-        Department department = 0;
+        Department department = Department.DERMATOLOGY;
         PolyclinicAppointment pa = new PolyclinicAppointment(p, d, LocalDateTime.now(), department);
         d.add(pa);
         d.callNextAppointment();
@@ -94,9 +95,9 @@ class DoctorTest {
      * Lists all inpatients.
      */
     @Test
-    void viewInpatients() {
+    void viewInpatients() throws IOException {
         System.out.println("Begin Test #"+12);
-        Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222333", "05554443322", "12345678");
+        Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222333", "05554443322", "12345678", Department.DERMATOLOGY);
         HospitalManagementSystem hms = new HospitalManagementSystem();
         d.viewInpatients(hms);
         System.out.println("Doctor ID   : "+d.getID());
@@ -114,9 +115,9 @@ class DoctorTest {
     @Test
     void clearSchedule() {
         System.out.println("Begin Test #"+13);
-        Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222333", "05554443322", "12345678");
+        Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222333", "05554443322", "12345678", Department.DERMATOLOGY);
         Patient p = new Patient("TestPatientName", "TestPatientSurname", "00111222334", "05554443323", "12345678");
-        Department department = 0;
+        Department department = Department.DERMATOLOGY;
         PolyclinicAppointment pa = new PolyclinicAppointment(p, d, LocalDateTime.now(), department);
         d.add(pa);
         d.viewAppointments();
@@ -137,9 +138,9 @@ class DoctorTest {
     @Test
     void add() {
         System.out.println("Begin Test #"+14);
-        Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222333", "05554443322", "12345678");
+        Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222333", "05554443322", "12345678", Department.DERMATOLOGY);
         Patient p = new Patient("TestPatientName", "TestPatientSurname", "00111222334", "05554443323", "12345678");
-        Department department = 0;
+        Department department = Department.DERMATOLOGY;
         PolyclinicAppointment pa = new PolyclinicAppointment(p, d, LocalDateTime.now(), department);
         d.viewAppointments();
         d.add(pa);

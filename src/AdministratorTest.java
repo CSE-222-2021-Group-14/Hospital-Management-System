@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import java.io.IOException;
+
 class AdministratorTest {
     /**
      * Test : AdministratorTest : addBed
@@ -9,14 +11,14 @@ class AdministratorTest {
      * Adds num times beds to dorm.
      */
     @Test
-    void addBed() {
+    void addBed() throws IOException {
         System.out.println("Begin Test #"+1);
         Administrator a = new Administrator("TestAdminName", "TestAdminSurname", "00111222333", "05554443322", "12345678");
         int numAdd = 5;
         HospitalManagementSystem hms = new HospitalManagementSystem();
         a.addBed(numAdd, hms);
         System.out.println("Admin ID    : "+a.getID());
-        System.out.println("Test Result : Added "+num+" beds to dorm.");
+        System.out.println("Test Result : Added "+numAdd+" beds to dorm.");
         System.out.println("End Test #"+1);
     }
 
@@ -28,7 +30,7 @@ class AdministratorTest {
      * Removes num times beds from dorm.
      */
     @Test
-    void removeBed() {
+    void removeBed() throws IOException {
         System.out.println("Begin Test #"+2);
         Administrator a = new Administrator("TestAdminName", "TestAdminSurname", "00111222333", "05554443322", "12345678");
         int numAdd = 5;
@@ -37,7 +39,7 @@ class AdministratorTest {
         a.addBed(numAdd, hms);
         a.removeBed(numRemove, hms);
         System.out.println("Admin ID    : "+a.getID());
-        System.out.println("Test Result : Removed "+num+" beds from dorm.");
+        System.out.println("Test Result : Removed "+numRemove+" beds from dorm.");
         System.out.println("End Test #"+2);
     }
 
@@ -49,7 +51,7 @@ class AdministratorTest {
      * Lists all staffs.
      */
     @Test
-    void viewAllStaff() {
+    void viewAllStaff() throws IOException {
         System.out.println("Begin Test #"+3);
         Administrator a = new Administrator("TestAdminName", "TestAdminSurname", "00111222333", "05554443322", "12345678");
         HospitalManagementSystem hms = new HospitalManagementSystem();
@@ -73,7 +75,7 @@ class AdministratorTest {
      * Prints specific staff's information.
      */
     @Test
-    void viewSpecificStaff() {
+    void viewSpecificStaff() throws IOException {
         System.out.println("Begin Test #"+4);
         Administrator a = new Administrator("TestAdminName", "TestAdminSurname", "00111222333", "05554443322", "12345678");
         String id = "00222333444";
@@ -100,7 +102,7 @@ class AdministratorTest {
      * Prints dorm status.
      */
     @Test
-    void viewDormStatus() {
+    void viewDormStatus() throws IOException {
         System.out.println("Begin Test #"+5);
         Administrator a = new Administrator("TestAdminName", "TestAdminSurname", "00111222333", "05554443322", "12345678");
         HospitalManagementSystem hms = new HospitalManagementSystem();
@@ -122,7 +124,7 @@ class AdministratorTest {
      * Hired staff to system.
      */
     @Test
-    void hireStaff() {
+    void hireStaff() throws IOException {
         System.out.println("Begin Test #"+6);
         Administrator a = new Administrator("TestAdminName", "TestAdminSurname", "00111222333", "05554443322", "12345678");
         HospitalManagementSystem hms = new HospitalManagementSystem();
@@ -147,7 +149,7 @@ class AdministratorTest {
      * Fired staff from system.
      */
     @Test
-    void fireStaff() {
+    void fireStaff() throws IOException {
         System.out.println("Begin Test #"+7);
         Administrator a = new Administrator("TestAdminName", "TestAdminSurname", "00111222333", "05554443322", "12345678");
         HospitalManagementSystem hms = new HospitalManagementSystem();
