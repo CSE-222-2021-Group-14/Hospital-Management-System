@@ -1,4 +1,6 @@
 import java.util.*;
+import SortAlgorithms.*;
+import Tree.*;
 
 public class Administrator extends AbstractPerson implements Staff {
 
@@ -90,12 +92,15 @@ public class Administrator extends AbstractPerson implements Staff {
 
         System.out.println("************************************");
         System.out.println("Receptionists:");
-        RedBlackTree <String> redBlackTree = new RedBlackTree<>();
+        RedBlackTree <Receptionist> redBlackTree = new RedBlackTree<>();
         for (Map.Entry<String,Receptionist> entry: h.getReceptionists().entrySet()) {
-          String temp = entry.getValue().getName();
+          Receptionist temp = entry.getValue();
           redBlackTree.add(temp);
         }
-        //redBlackTree.inOrderTraverse() not implemented yet
+        ArrayList<Receptionist> sortedReceptionists = redBlackTree.inOrderTraversal();
+        for (Receptionist receptionist : sortedReceptionists){
+            System.out.println("name: " + receptionist.getName() + " " + receptionist.getSurname());
+        }
     }
     
 

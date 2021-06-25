@@ -57,6 +57,12 @@ public class Receptionist extends AbstractPerson implements Staff, Comparable<Re
 
     @Override
     public int compareTo(Receptionist o) {
-        return this.getID().compareTo(o.getID());
+        if(this.name.compareTo(o.getName()) == 0){
+            if(this.surname.compareTo(o.getSurname()) == 0){
+                return this.ID.compareTo(o.getID());
+            }
+            else return this.surname.compareTo(o.getSurname());
+        }
+        return this.name.compareTo(o.getName());
     }
 }

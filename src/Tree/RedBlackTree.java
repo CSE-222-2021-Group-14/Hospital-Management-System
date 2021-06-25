@@ -1,5 +1,7 @@
 package Tree;
 
+import java.util.ArrayList;
+
 /** RedBlackTree.java
  *  Implements a Red-Black binary search tree
  *  Red-Black trees were invented by Bayer with refinments
@@ -566,6 +568,23 @@ public class RedBlackTree < E
     }
   }
 
-  /**** END EXERCISE ****/
+  public ArrayList<E> inOrderTraversal(){
+    ArrayList<E> increasingOrder = new ArrayList<>();
+    inOrderTraversal(root, increasingOrder);
+    return increasingOrder;
+  }
 
+  /**
+   * Returns a string representation of this binary search tree recursively. The string representation consists of a list of this binary search tree's elements in increasing order.
+   * Adjacent elements are separated by the character " " (space). Elements are converted to strings as by their toString() methods.
+   * @param ancestor start node
+   * @param arrayList arraylist to add the elements of this binary search tree in increasing order
+   */
+  private void inOrderTraversal(Node<E> ancestor, ArrayList<E> arrayList){
+    if(ancestor != null){
+      inOrderTraversal(ancestor.left, arrayList);
+      arrayList.add(ancestor.data);
+      inOrderTraversal(ancestor.right, arrayList);
+    }
+  }
 }
