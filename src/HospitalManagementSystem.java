@@ -73,6 +73,7 @@ public class HospitalManagementSystem implements Serializable {
         patients = new TreeMap<>();
         receptionists = new TreeMap<>();
         nurses = new TreeMap<>();
+        dorm = new ArrayList<>();
         administrator = new Administrator("Erdoğan", "Sevilgen", "71649093147", "05294791354", "13575110904");
         ReadFromFile.readFromFile(this);
     }
@@ -136,7 +137,7 @@ public class HospitalManagementSystem implements Serializable {
                     else patient = signIn();
 
                     int functionality = 0;
-                    while (functionality != 5){
+                    while (functionality != 6 ){
                         System.out.println("Patient Menu\nWelcome " + patient.getName() + " " + patient.getSurname() +
                                 "\n1)View Prescriptions\n2)View Appointments\n3)Get An Appointment\n4)Cancel An Appointment\n" +
                                 "5)Shortest Way To A Location In The Hospital\n6)Exit");
@@ -159,18 +160,18 @@ public class HospitalManagementSystem implements Serializable {
                                         System.out.println(counter++ + ")Time: " + dtf.format(a.getTime()));
                                     }
                                     int cancelIndex = getValidInput(scanner, 1, counter - 1);
-                                    activeAppointments.get(cancelIndex).setStatus(StatusType.CANCELLED);
+                                    activeAppointments.get(cancelIndex-1).setStatus(StatusType.CANCELLED);
                                 }
                             }
                             case 5 -> {
-                                System.out.println("Please select your current location\n1)Desk");
+                                System.out.println("Please select your current location\n0)Desk");
                                 Department.printDepartments();
                                 System.out.println("10)Vaccination\n11)Wc");
-                                int current = getValidInput(scanner, 1, 11);
-                                System.out.println("Please select your destination\n1)Desk");
+                                int current = getValidInput(scanner, 0, 11);
+                                System.out.println("Please select your destination\n0)Desk");
                                 Department.printDepartments();
                                 System.out.println("10)Vaccination\n11)Wc");
-                                int dest = getValidInput(scanner, 1, 11);
+                                int dest = getValidInput(scanner, 0, 11);
                                 int[][] result = shortestPath(patient, current, dest);
                                 if(result[0].length == 0) System.out.println("You are already there");
                                 else if(result[0].length == 1){
@@ -662,9 +663,12 @@ public class HospitalManagementSystem implements Serializable {
                         System.out.println("Currently there is no available appointment!");
                     } else {
                         int appointmentIndex = getValidInput(scanner, 1, counter - 1);
-                        patient.addAppointment(new PolyclinicAppointment(patient, relevantDoctors.get(index),
+                        Appointment appointment = new PolyclinicAppointment(patient, relevantDoctors.get(index-1),
                                 appointmentsOfDoctor.get(appointmentIndex - 1).getTime(),
-                                relevantDoctors.get(index).getDepartment()));
+                                relevantDoctors.get(index-1).getDepartment());
+                        appointment.setStatus(StatusType.TAKEN);
+                        patient.addAppointment(appointment);
+                        appointmentsOfDoctor.get(appointmentIndex - 1).setStatus(StatusType.TAKEN);
                     }
                 }
             }
@@ -684,7 +688,9 @@ public class HospitalManagementSystem implements Serializable {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
             LocalDateTime time = LocalDateTime.parse(date, dtf);
             Nurse nurse = leastBusyNurse();
-            nurse.add(new VaccineAppointment(patient, nurse, time));
+            VaccineAppointment appointment = new VaccineAppointment(patient, nurse, time);
+            appointment.setStatus(StatusType.TAKEN);
+            nurse.add(appointment);
         }
     }
 
