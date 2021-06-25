@@ -1,7 +1,11 @@
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+/***
+ * This class is representing patient.
+ */
 public class Patient extends AbstractPerson implements Comparable<Patient> {
+    
     private SkipList<Appointment> appointments;
     private ArrayList<Prescription> prescriptions;
     private ArrayList<String> disease;
@@ -30,6 +34,14 @@ public class Patient extends AbstractPerson implements Comparable<Patient> {
         return prescriptions;
     }
 
+    /***
+     * Patient's constructor
+     * @param name
+     * @param surname
+     * @param ID
+     * @param phoneNum
+     * @param password
+     */
     public Patient(String name, String surname, String ID, String phoneNum, String password){
         super(name, surname, ID, phoneNum, password);
         appointments = new SkipList<>();
@@ -37,6 +49,10 @@ public class Patient extends AbstractPerson implements Comparable<Patient> {
         disease = new ArrayList<>();
     }
 
+    /***
+     * Adding appointment for patient.
+     * @param a
+     */
     public void addAppointment(Appointment a){
         appointments.add(a);
     }
@@ -49,6 +65,9 @@ public class Patient extends AbstractPerson implements Comparable<Patient> {
             throw new NoSuchElementException("Cannot cancel appointment\n");
     }
 
+    /***
+     * Viewing available appointments for patient.
+     */
     public void viewAppointments() {
         if (!appointments.isEmpty()){
             Stack<Appointment> temp = new Stack<>();
@@ -71,6 +90,9 @@ public class Patient extends AbstractPerson implements Comparable<Patient> {
             System.out.print("Currently you haven't got any appointment\n");
     }
 
+    /***
+     * Viewing prescriptions of related patient.
+     */
     public void viewPrescriptions() {
         prescriptions.forEach(System.out::println);
     }
@@ -79,7 +101,7 @@ public class Patient extends AbstractPerson implements Comparable<Patient> {
     public int compareTo(Patient o) {
         return 0;
     }
-
+    
     @Override
     public String toString(){
         StringBuilder s = new StringBuilder();
