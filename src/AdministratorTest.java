@@ -11,7 +11,7 @@ class AdministratorTest {
     @org.junit.jupiter.api.Test
     void addBed() {
         System.out.println("Begin Test #"+1);
-        Administrator a = new Administrator("TestDoctorName", "TestDoctorSurname", "00111222333", "05554443322", "12345678");
+        Administrator a = new Administrator("TestAdminName", "TestAdminSurname", "00111222333", "05554443322", "12345678");
         int numAdd = 5;
         HospitalManagementSystem hms = new HospitalManagementSystem();
         a.addBed(numAdd, hms);
@@ -30,7 +30,7 @@ class AdministratorTest {
     @org.junit.jupiter.api.Test
     void removeBed() {
         System.out.println("Begin Test #"+2);
-        Administrator a = new Administrator("TestDoctorName", "TestDoctorSurname", "00111222333", "05554443322", "12345678");
+        Administrator a = new Administrator("TestAdminName", "TestAdminSurname", "00111222333", "05554443322", "12345678");
         int numAdd = 5;
         int numRemove = 1;
         HospitalManagementSystem hms = new HospitalManagementSystem();
@@ -51,7 +51,7 @@ class AdministratorTest {
     @org.junit.jupiter.api.Test
     void viewAllStaff() {
         System.out.println("Begin Test #"+3);
-        Administrator a = new Administrator("TestDoctorName", "TestDoctorSurname", "00111222333", "05554443322", "12345678");
+        Administrator a = new Administrator("TestAdminName", "TestAdminSurname", "00111222333", "05554443322", "12345678");
         HospitalManagementSystem hms = new HospitalManagementSystem();
         Receptionist s1 = new Receptionist("TestStaffName1", "TestStaffSurname1", "00222333444", "05553332211", "12345678");
         Receptionist s2 = new Receptionist("TestStaffName2", "TestStaffSurname2", "00222333445", "05553332212", "12345678");
@@ -75,10 +75,10 @@ class AdministratorTest {
     @org.junit.jupiter.api.Test
     void viewSpecificStaff() {
         System.out.println("Begin Test #"+4);
-        Administrator a = new Administrator("TestDoctorName", "TestDoctorSurname", "00111222333", "05554443322", "12345678");
+        Administrator a = new Administrator("TestAdminName", "TestAdminSurname", "00111222333", "05554443322", "12345678");
         String id = "00222333444";
         // look here xxx
-        int mod = 0;
+        int mod = 1;
         HospitalManagementSystem hms = new HospitalManagementSystem();
         Receptionist s1 = new Receptionist("TestStaffName1", "TestStaffSurname1", "00222333444", "05553332211", "12345678");
         Receptionist s2 = new Receptionist("TestStaffName2", "TestStaffSurname2", "00222333445", "05553332212", "12345678");
@@ -102,7 +102,7 @@ class AdministratorTest {
     @org.junit.jupiter.api.Test
     void viewDormStatus() {
         System.out.println("Begin Test #"+5);
-        Administrator a = new Administrator("TestDoctorName", "TestDoctorSurname", "00111222333", "05554443322", "12345678");
+        Administrator a = new Administrator("TestAdminName", "TestAdminSurname", "00111222333", "05554443322", "12345678");
         HospitalManagementSystem hms = new HospitalManagementSystem();
         int numAdd = 50;
         a.addBed(numAdd, hms);
@@ -124,7 +124,7 @@ class AdministratorTest {
     @org.junit.jupiter.api.Test
     void hireStaff() {
         System.out.println("Begin Test #"+6);
-        Administrator a = new Administrator("TestDoctorName", "TestDoctorSurname", "00111222333", "05554443322", "12345678");
+        Administrator a = new Administrator("TestAdminName", "TestAdminSurname", "00111222333", "05554443322", "12345678");
         HospitalManagementSystem hms = new HospitalManagementSystem();
         Receptionist s1 = new Receptionist("TestStaffName1", "TestStaffSurname1", "00222333444", "05553332211", "12345678");
         Receptionist s2 = new Receptionist("TestStaffName2", "TestStaffSurname2", "00222333445", "05553332212", "12345678");
@@ -149,7 +149,7 @@ class AdministratorTest {
     @org.junit.jupiter.api.Test
     void fireStaff() {
         System.out.println("Begin Test #"+7);
-        Administrator a = new Administrator("TestDoctorName", "TestDoctorSurname", "00111222333", "05554443322", "12345678");
+        Administrator a = new Administrator("TestAdminName", "TestAdminSurname", "00111222333", "05554443322", "12345678");
         HospitalManagementSystem hms = new HospitalManagementSystem();
         Receptionist s1 = new Receptionist("TestStaffName1", "TestStaffSurname1", "00222333444", "05553332211", "12345678");
         Receptionist s2 = new Receptionist("TestStaffName2", "TestStaffSurname2", "00222333445", "05553332212", "12345678");
