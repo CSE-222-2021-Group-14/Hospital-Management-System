@@ -49,8 +49,12 @@ public abstract class Appointment implements Serializable , Comparable<Appointme
     public String toString() {
         StringBuilder s = new StringBuilder();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM yyyy   HH:mm");
-        s.append("Time: ").append(dtf.format(time)).append("\nPatient: ").append(patient.getName()).append(" ")
-                .append(patient.getSurname()).append("\n");
+        s.append("Time: ").append(dtf.format(time)).append("\nPatient: ");
+        if (patient != null)
+            s.append(patient.getName()).append(" ")
+                    .append(patient.getSurname()).append("\n");
+        else
+            s.append("Empty");
         /*s.append("Patient: ").append(patient.getName()).append(" ").append(patient.getSurname()).append("\n");
         s.append("Time: ").append(dtf.format(time)).append("\n").append("Status: ");
         String statusLower = status.toString().toLowerCase();
