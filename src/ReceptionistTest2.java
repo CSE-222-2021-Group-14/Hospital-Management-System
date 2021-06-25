@@ -6,20 +6,15 @@ class ReceptionistTest2 {
      * Test : ReceptionistTest2 : newPatientRegistration
      * pre : Needed objects must be constructed.
      * post : Patient added to system.
-     * Constructs receptionist and hospital management objects, and patient information strings created.
+     * Constructs receptionist and hospital management objects.
      * Adds patient to system.
      */
     @org.junit.jupiter.api.Test
     void newPatientRegistration() {
         System.out.println("Begin Test #"+22);
-        Receptionist r = null;
-        String name = "Jane";
-        String surname = "Doe";
-        String id = "00111222333";
-        String phoneNum = "123";
-        String password = "***";
-        HospitalManagementSystem hms = null;
-        r.newPatientRegistration(name, surname, id, phoneNum, password, hms);
+        Receptionist r = new Receptionist(("TestReceptionistName", "TestReceptionistSurname", "00111222333", "05554443322", "12345678"););
+        HospitalManagementSystem hms = new HospitalManagementSystem();
+        r.newPatientRegistration("TestPatientName", "TestPatientSurname", "00111222334", "5554443323", "12345678", hms);
         System.out.println("Receptionist ID : "+r.getID());
         System.out.println("Test Result     : Registered new patient.");
         System.out.println("End Test #"+22);
@@ -35,10 +30,17 @@ class ReceptionistTest2 {
     @org.junit.jupiter.api.Test
     void confirmAppointments() {
         System.out.println("Begin Test #"+23);
-        Receptionist r = null;
-        String id = "00111222333";
-        HospitalManagementSystem hms = null;
-        r.confirmAppointments(id, hms);
+        Receptionist r = new Receptionist(("TestReceptionistName", "TestReceptionistSurname", "00111222333", "05554443322", "12345678"););
+        HospitalManagementSystem hms = new HospitalManagementSystem();
+        Patient p = new Patient("TestPatientName", "TestPatientSurname", "00111222334", "05554443323", "12345678");
+        Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222335", "05554443324", "12345678");
+        // look here xxx
+        LocalDateTime time = null;
+        Department department = DERMATOLOGY;
+        PolyclinicAppointment pa = new PolyclinicAppointment(p, d, time, department);
+        p.addAppointment(pa);
+        // look here xxx
+        r.confirmAppointments("00111222334", hms);
         System.out.println("Receptionist ID : "+r.getID());
         System.out.println("Test Result     : Confirmed coming appointments.");
         System.out.println("End Test #"+23);
