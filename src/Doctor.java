@@ -1,5 +1,3 @@
-import jdk.internal.icu.impl.CharacterIteratorWrapper;
-
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -45,7 +43,7 @@ public class Doctor extends AbstractPerson implements Staff, Comparable<Doctor>{
     }
 
     public PolyclinicAppointment callNextAppointment() {
-        LocalDateTime today = LocalDate.now().atTime(23, 59);
+        /*LocalDateTime today = LocalDate.now().atTime(23, 59);
         ListIterator<PolyclinicAppointment> appointmentIterator = appointments.listIterator(0);
         PolyclinicAppointment appointment = appointmentIterator.next();
 
@@ -61,7 +59,7 @@ public class Doctor extends AbstractPerson implements Staff, Comparable<Doctor>{
         if(appointment.getTime().compareTo(today) > 0){
             appointmentIterator.previous();
             return null;
-        }
+        }*/
         if(patientCount == 14) throw new NoSuchElementException();
         return appointments.get(patientCount++);
         //return appointmentIterator.next();

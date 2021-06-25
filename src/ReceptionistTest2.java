@@ -1,5 +1,6 @@
 import org.junit.Test;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 
 class ReceptionistTest2 {
@@ -12,9 +13,9 @@ class ReceptionistTest2 {
      * Adds patient to system.
      */
     @Test
-    void newPatientRegistration() {
+    void newPatientRegistration() throws IOException {
         System.out.println("Begin Test #"+22);
-        Receptionist r = new Receptionist(("TestReceptionistName", "TestReceptionistSurname", "00111222333", "05554443322", "12345678");
+        Receptionist r = new Receptionist("TestReceptionistName", "TestReceptionistSurname", "00111222333", "05554443322", "12345678");
         HospitalManagementSystem hms = new HospitalManagementSystem();
         r.newPatientRegistration("TestPatientName", "TestPatientSurname", "00111222334", "5554443323", "12345678", hms);
         System.out.println("Receptionist ID : "+r.getID());
@@ -29,10 +30,9 @@ class ReceptionistTest2 {
      * Constructs receptionist and hospital management objects.
      * Adds appointment to system.
      */
-    @org.junit.jupiter.api.Test
-    void confirmAppointments() {
+    void confirmAppointments() throws IOException {
         System.out.println("Begin Test #"+23);
-        Receptionist r = new Receptionist(("TestReceptionistName", "TestReceptionistSurname", "00111222333", "05554443322", "12345678"););
+        Receptionist r = new Receptionist("TestReceptionistName", "TestReceptionistSurname", "00111222333", "05554443322", "12345678");
         HospitalManagementSystem hms = new HospitalManagementSystem();
         Patient p = new Patient("TestPatientName", "TestPatientSurname", "00111222334", "05554443323", "12345678");
         Department department = Department.DERMATOLOGY;

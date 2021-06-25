@@ -2,10 +2,7 @@ import Graph.DijkstrasAlgorithm;
 import Graph.Edge;
 import Graph.ListGraph;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -26,8 +23,8 @@ public class HospitalManagementSystem implements Serializable {
     private TreeSet<String> IDs;
     private int vaccineAge;
     private int occupiedBedNum;
-    private final ListGraph mapOfHospital;
-    private final ArrayList<String> vertices;
+    private ListGraph mapOfHospital;
+    private ArrayList<String> vertices;
 
     protected int getOccupiedBedNum() {
         return occupiedBedNum;
@@ -50,32 +47,35 @@ public class HospitalManagementSystem implements Serializable {
     }
 
     public HospitalManagementSystem() throws IOException {
-        int randomWeight;
-        Random random = new Random();
-        mapOfHospital = new ListGraph(11, false);
-        vertices = new ArrayList<>();
+        File file = new File("tmp/data.ser");
+        if(!file.exists()) {
+            int randomWeight;
+            Random random = new Random();
+            mapOfHospital = new ListGraph(11, false);
+            vertices = new ArrayList<>();
 
-        vertices.add("DESK");
-        for(Department d : Department.values()){
-            vertices.add(d.toString());
-        }
-        vertices.add("VACCINATION");
-        vertices.add("WC");
-        for(int i = 0; i < vertices.size(); i++){
-            for(int j = 0; j < vertices.size(); j++){
-                if(j != i) {
-                    randomWeight = random.nextInt(45) + 5;
-                    mapOfHospital.insert(new Edge(i, j, randomWeight));
+            vertices.add("DESK");
+            for (Department d : Department.values()) {
+                vertices.add(d.toString());
+            }
+            vertices.add("VACCINATION");
+            vertices.add("WC");
+            for (int i = 0; i < vertices.size(); i++) {
+                for (int j = 0; j < vertices.size(); j++) {
+                    if (j != i) {
+                        randomWeight = random.nextInt(45) + 5;
+                        mapOfHospital.insert(new Edge(i, j, randomWeight));
+                    }
                 }
             }
+            doctors = new TreeMap<>();
+            patients = new TreeMap<>();
+            receptionists = new TreeMap<>();
+            nurses = new TreeMap<>();
+            dorm = new ArrayList<>();
+            administrator = new Administrator("Erdoğan", "Sevilgen", "71649093147", "05294791354", "13575110904");
+            ReadFromFile.readFromFile(this);
         }
-        doctors = new TreeMap<>();
-        patients = new TreeMap<>();
-        receptionists = new TreeMap<>();
-        nurses = new TreeMap<>();
-        dorm = new ArrayList<>();
-        administrator = new Administrator("Erdoğan", "Sevilgen", "71649093147", "05294791354", "13575110904");
-        ReadFromFile.readFromFile(this);
     }
 
     public Patient findPatient(String ID){

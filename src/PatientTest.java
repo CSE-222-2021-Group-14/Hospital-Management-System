@@ -17,7 +17,6 @@ class PatientTest {
         Department department = Department.DERMATOLOGY;
         Patient p = new Patient("TestPatientName", "TestPatientSurname", "00111222333", "05554443322", "12345678");
         Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222334", "05554443323", "12345678", department);
-        Department department = 0;
         PolyclinicAppointment pa = new PolyclinicAppointment(p, d, LocalDateTime.now(), department);
         p.addAppointment(pa);
         System.out.println("Patient ID  : "+p.getID());
@@ -36,8 +35,8 @@ class PatientTest {
     void cancelAppointment() {
         System.out.println("Begin Test #"+19);
         Patient p = new Patient("TestPatientName", "TestPatientSurname", "00111222333", "05554443322", "12345678");
-        Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222334", "05554443323", "12345678");
-        Department department = 0;
+        Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222334", "05554443323", "12345678", Department.DERMATOLOGY);
+        Department department = Department.DERMATOLOGY;
         PolyclinicAppointment pa1 = new PolyclinicAppointment(p, d, LocalDateTime.now(), department);
         p.addAppointment(pa1);
         PolyclinicAppointment pa2 = new PolyclinicAppointment(p, d, LocalDateTime.now(), department);
@@ -61,8 +60,8 @@ class PatientTest {
     void viewAppointments() {
         System.out.println("Begin Test #"+20);
         Patient p = new Patient("TestPatientName", "TestPatientSurname", "00111222333", "05554443322", "12345678");
-        Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222334", "05554443323", "12345678");
-        Department department = 0;
+        Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222334", "05554443323", "12345678", Department.DERMATOLOGY);
+        Department department = Department.DERMATOLOGY;;
         PolyclinicAppointment pa = new PolyclinicAppointment(p, d, LocalDateTime.now(), department);
         p.addAppointment(pa);
         p.viewAppointments();
