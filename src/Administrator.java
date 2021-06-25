@@ -60,6 +60,44 @@ public class Administrator extends AbstractPerson implements Staff {
             System.out.println("name: " + entry.getValue().name + " surname: " + entry.getValue().surname + " ID: " + entry.getValue().ID);
         }
     }
+    
+        void SortByNameAllStaff(HospitalManagementSystem h){
+        System.out.println("Doctors:");
+        ArrayList <String> SortDoctors = new ArrayList<>();
+        for (Map.Entry<String,Doctor> entry: h.getDoctors().entrySet()) {
+            String temp = entry.getValue().getName();
+            SortDoctors.add(temp);
+        }
+        String[]sortDoctors = (String[]) SortDoctors.toArray();
+        QuickSort.quickSort(sortDoctors,0,SortDoctors.size()-1);
+        for (int i = 0; i < SortDoctors.size(); ++i){
+            System.out.println("name: " + sortDoctors[i]);
+        }
+
+        System.out.println("************************************");
+        System.out.println("Nurses:");
+        ArrayList <String> SortNurses = new ArrayList<>();
+        for (Map.Entry<String,Nurse> entry: h.getNurses().entrySet()) {
+            String temp = entry.getValue().getName();
+            SortNurses.add(temp);
+        }
+        String[]sortNurses = (String[]) SortNurses.toArray();
+        QuickSort.quickSort(sortNurses,0,SortDoctors.size()-1);
+        for (int i = 0; i < SortNurses.size(); ++i){
+            System.out.println("name: " + sortNurses[i]);
+        }
+
+
+        System.out.println("************************************");
+        System.out.println("Receptionists:");
+        RedBlackTree <String> redBlackTree = new RedBlackTree<>();
+        for (Map.Entry<String,Receptionist> entry: h.getReceptionists().entrySet()) {
+          String temp = entry.getValue().getName();
+          redBlackTree.add(temp);
+        }
+        //redBlackTree.inOrderTraverse() not implemented yet
+    }
+    
 
     /**
      * Prints specific staff infos.
