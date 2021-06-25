@@ -1,9 +1,6 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
-public class ReadFromFile {
+public class ReadFromFile implements Serializable {
     public static void readFromFile(HospitalManagementSystem system) throws IOException {
         File doctorFile = new File("default_users/doctors.txt");
         File patientFile = new File("default_users/patients.txt");

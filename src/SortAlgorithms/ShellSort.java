@@ -1,5 +1,8 @@
 package SortAlgorithms;
-public class ShellSort {
+
+import java.io.Serializable;
+
+public class ShellSort implements Serializable {
     /*public static <T extends Comparable<T>> void shellSort(T[] array){
         int interval = 1;
 

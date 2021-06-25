@@ -1,8 +1,9 @@
 import org.junit.Test;
 
 import java.io.IOException;
+import java.io.Serializable;
 
-class AdministratorTest {
+class AdministratorTest implements Serializable {
     /**
      * Test : AdministratorTest : addBed
      * pre : Needed objects must be constructed.

@@ -1,5 +1,6 @@
 package Graph;
 
+import java.io.Serializable;
 import java.util.*;
 
 /** Interface to specify a Graph ADT. A graph is a set
@@ -12,7 +13,7 @@ import java.util.*;
 *   @author Koffman and Wolfgang
 */
 
-public interface Graph {
+public interface Graph extends Serializable {
 
   // Accessor Methods
   /** Return the number of vertices.

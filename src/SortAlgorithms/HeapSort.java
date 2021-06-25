@@ -1,5 +1,8 @@
 package SortAlgorithms;
-public class HeapSort {
+
+import java.io.Serializable;
+
+public class HeapSort implements Serializable {
     public static <T extends Comparable<T>> void heapSort(T[] array){
         T temp;
         buildMaxHeap(array);

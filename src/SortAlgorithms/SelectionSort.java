@@ -1,5 +1,8 @@
 package SortAlgorithms;
-public class SelectionSort {
+
+import java.io.Serializable;
+
+public class SelectionSort implements Serializable {
     public static <T extends Comparable<T>> void selectionSort(T[] array){
         for(int fill = 0; fill < array.length - 1; fill++){
             int posMin = fill;

@@ -237,6 +237,7 @@ public class HospitalManagementSystem implements Serializable {
                                 } else{
                                     current = nextAppointment.getPatient();
                                     current.getAppointments().find(nextAppointment).setStatus(StatusType.FINISHED);
+                                    nextAppointment.setStatus(StatusType.FINISHED);
                                     System.out.println(current.getName() + " " + current.getSurname() + " is called");
                                 }
                             }
@@ -459,6 +460,7 @@ public class HospitalManagementSystem implements Serializable {
                     try {
                         serialize();
                     } catch (IOException e) {
+                        System.out.println(e);
                         System.out.println("An error occurred while serializing");
                     }
                     System.out.println("GOODBYE");
@@ -651,24 +653,27 @@ public class HospitalManagementSystem implements Serializable {
                     System.out.println("Available appointments are listing...");
                     LinkedList<PolyclinicAppointment> appointmentsOfDoctor = relevantDoctors.get(index - 1).getAppointments();
                     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM yyyy   HH:mm");
-                    counter = 1;
+                    counter = 0;
 
                     for (PolyclinicAppointment polyclinicAppointment : appointmentsOfDoctor) {
                         if (polyclinicAppointment.getStatus() == StatusType.EMPTY) {
-                            System.out.println(counter++ + ")" + dtf.format(polyclinicAppointment.getTime()));
+                            System.out.println(counter + ")" + dtf.format(polyclinicAppointment.getTime()));
                         }
+                        counter++;
                     }
 
-                    if (counter == 1) {
+                    if (counter == 0) {
                         System.out.println("Currently there is no available appointment!");
                     } else {
-                        int appointmentIndex = getValidInput(scanner, 1, counter - 1);
+                        int appointmentIndex = getValidInput(scanner, 0, counter);
                         Appointment appointment = new PolyclinicAppointment(patient, relevantDoctors.get(index-1),
-                                appointmentsOfDoctor.get(appointmentIndex - 1).getTime(),
+                                appointmentsOfDoctor.get(appointmentIndex).getTime(),
                                 relevantDoctors.get(index-1).getDepartment());
                         appointment.setStatus(StatusType.TAKEN);
                         patient.addAppointment(appointment);
-                        appointmentsOfDoctor.get(appointmentIndex - 1).setStatus(StatusType.TAKEN);
+                        appointmentsOfDoctor.get(appointmentIndex).setStatus(StatusType.TAKEN);
+                        appointmentsOfDoctor.get(appointmentIndex).setPatient(patient);
+                        //appointmentsOfDoctor.get(ap)
                     }
                 }
             }

@@ -1,5 +1,8 @@
 package SortAlgorithms;
-public class InsertionSort {
+
+import java.io.Serializable;
+
+public class InsertionSort implements Serializable {
     public static <T extends Comparable<T>> void insertionSort(T[] array){
         for(int i = 1; i < array.length; i++){
             int nextPos = i;

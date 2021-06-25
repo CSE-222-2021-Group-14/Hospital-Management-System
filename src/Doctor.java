@@ -6,7 +6,6 @@ import java.util.*;
 public class Doctor extends AbstractPerson implements Staff, Comparable<Doctor>{
     private final LinkedList<PolyclinicAppointment> appointments;
     private final Department department;
-    //private Iterator<PolyclinicAppointment> appointmentIterator;
     private int patientCount = 0;
 
     public Doctor(String name, String surname, String ID, String phoneNum, String password, Department department) {
@@ -33,36 +32,15 @@ public class Doctor extends AbstractPerson implements Staff, Comparable<Doctor>{
 
             date = date.plusDays(1).toLocalDate().atTime(9, 0);
         }
-
-        //appointmentIterator = appointments.iterator();
     }
 
     protected void reconfigurePatientQueue(){
         patientCount = 0;
-        //appointmentIterator = appointments.iterator();
     }
 
     public PolyclinicAppointment callNextAppointment() {
-        /*LocalDateTime today = LocalDate.now().atTime(23, 59);
-        ListIterator<PolyclinicAppointment> appointmentIterator = appointments.listIterator(0);
-        PolyclinicAppointment appointment = appointmentIterator.next();
-
-        while (appointment.getTime().compareTo(today) < 0 && !appointment.isConfirmed() &&
-                !appointment.getStatus().equals(StatusType.TAKEN)){
-            appointment = appointmentIterator.next();
-        }
-        while ((appointment = appointments.get(patientCount)).getTime().compareTo(today) < 0
-                && !appointment.isConfirmed() && !appointment.getStatus().equals(StatusType.TAKEN)){
-            patientCount++;
-        }
-        return appointments.get(patientCount);
-        if(appointment.getTime().compareTo(today) > 0){
-            appointmentIterator.previous();
-            return null;
-        }*/
         if(patientCount == 14) throw new NoSuchElementException();
         return appointments.get(patientCount++);
-        //return appointmentIterator.next();
     }
 
     public void viewAppointments() {
@@ -70,7 +48,7 @@ public class Doctor extends AbstractPerson implements Staff, Comparable<Doctor>{
         for(int i = 0; i < 14; i++){
             PolyclinicAppointment appointment = iterator.next();
             if(appointment.getStatus().equals(StatusType.TAKEN)){
-                System.out.println(appointment);
+                System.out.println(appointment + "\n");
             }
         }
     }

@@ -10,7 +10,7 @@ import java.io.*;
 */
 
 public abstract class AbstractGraph
-    implements Graph {
+    implements Graph, Serializable {
 
   // Data Fields
   /** The number of vertices */

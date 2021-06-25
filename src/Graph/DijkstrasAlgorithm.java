@@ -1,12 +1,13 @@
 package Graph;
 
+import java.io.Serializable;
 import java.util.*;
 
 /** A class for calling Dijkstra's algorithm.
  *  @author Koffman and Wolfgang
  */
 
-public class DijkstrasAlgorithm {
+public class DijkstrasAlgorithm implements Serializable {
 
   /** Dijkstra's Shortest-Path algorithm.
    @param graph The weighted graph to be searched

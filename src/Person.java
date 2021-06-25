@@ -1,4 +1,6 @@
-public interface Person {
+import java.io.Serializable;
+
+public interface Person extends Serializable {
     String getName();
     String getSurname();
     String getID();

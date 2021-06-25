@@ -1,5 +1,8 @@
 package SortAlgorithms;
-public class BubbleSort {
+
+import java.io.Serializable;
+
+public class BubbleSort implements Serializable {
     public static <T extends Comparable<T>> void bubbleSort(T[] array){
         boolean exchange;
         int round = 1;

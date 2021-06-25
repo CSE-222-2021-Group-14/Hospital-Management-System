@@ -1,9 +1,10 @@
 import org.junit.Test;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-class ReceptionistTest {
+class ReceptionistTest implements Serializable {
 
     @Test
     void newPatientRegistration() throws IOException {

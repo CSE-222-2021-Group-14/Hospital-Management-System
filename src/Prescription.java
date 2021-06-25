@@ -1,4 +1,6 @@
-public class Prescription {
+import java.io.Serializable;
+
+public class Prescription implements Serializable {
 
     String medicine;
     int times;

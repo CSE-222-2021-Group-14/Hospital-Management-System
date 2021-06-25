@@ -1,11 +1,13 @@
 package Graph;
 
+import java.io.Serializable;
+
 /** An Edge represents a relationship between two
  *  vertices.
  *  @author Koffman and Wolfgang
 */
 
-public class Edge {
+public class Edge implements Serializable {
   /**** BEGIN EXERCISE ****/
   // Data Fields
   /** The source vertix */

@@ -1,4 +1,6 @@
-public enum Department {
+import java.io.Serializable;
+
+public enum Department implements Serializable {
     DERMATOLOGY(1),
     INTERNAL_MEDICINE(2),
     NEUROLOGY(3),

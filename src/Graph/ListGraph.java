@@ -9,7 +9,7 @@ import java.io.*;
 */
 
 public class ListGraph
-    extends AbstractGraph {
+    extends AbstractGraph implements Serializable{
 
   // Data Field
   /** An array of Lists to contain the edges that

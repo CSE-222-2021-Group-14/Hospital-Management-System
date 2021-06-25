@@ -1,9 +1,8 @@
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class Driver {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         //map.forEach((k, v) -> System.out.println("key:" + k + " value:" + v));
         /*Calendar c = Calendar.getInstance();
         System.out.println(c.get(Calendar.DAY_OF_WEEK));*/
@@ -22,18 +21,21 @@ public class Driver {
         System.out.println("\nparent array\n" + Arrays.toString(parent));
         System.out.println("\ndistance array\n" + Arrays.toString(distance));*/
         HospitalManagementSystem system = new HospitalManagementSystem();
+        if(new File("tmp/data.ser").exists()){
+            system = deserialize();
+        }
         system.runSystem();
     }
 
-    /*private static HospitalManagementSystem deserialize(HospitalManagementSystem system) throws IOException, ClassNotFoundException {
+    private static HospitalManagementSystem deserialize() throws IOException, ClassNotFoundException {
         File file = new File("tmp/data.ser");
         FileInputStream fileIn = new FileInputStream(file);
         ObjectInputStream in = new ObjectInputStream(fileIn);
-        system = (HospitalManagementSystem) in.readObject();
+        HospitalManagementSystem system = (HospitalManagementSystem) in.readObject();
         in.close();
         fileIn.close();
         return system;
-    }*/
+    }
     public void defaultUsers(){
         try {
             ArrayList<String> names = new ArrayList<>();

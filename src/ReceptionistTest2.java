@@ -1,9 +1,10 @@
 import org.junit.Test;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-class ReceptionistTest2 {
+class ReceptionistTest2 implements Serializable {
 
     /**
      * Test : ReceptionistTest2 : newPatientRegistration

@@ -1,5 +1,8 @@
 package SortAlgorithms;
-public class QuickSort {
+
+import java.io.Serializable;
+
+public class QuickSort implements Serializable {
     public static <T extends Comparable<T>> void quickSort(T[] array, int low, int high){
         if(low < high){
             int pivotPos = partition(array, low, high);

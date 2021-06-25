@@ -7,7 +7,7 @@ public abstract class Appointment implements Serializable , Comparable<Appointme
     // Data Fields
 
     /** Patient who has taken this appointment.*/
-    protected final Patient patient;
+    protected Patient patient;
     /** Time of Appointment */
     protected final LocalDateTime time;
     /** Flag to indicate that the Appointment is confirmed by Receptionist or not. */
@@ -44,6 +44,10 @@ public abstract class Appointment implements Serializable , Comparable<Appointme
 
     public void setStatus(StatusType status) {
         this.status = status;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
     public String toString() {

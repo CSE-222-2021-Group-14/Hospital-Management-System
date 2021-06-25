@@ -1,6 +1,9 @@
 package SortAlgorithms;
+
+import java.io.Serializable;
+
 @SuppressWarnings("unchecked")
-public class MergeSort {
+public class MergeSort implements Serializable {
     public static <T extends Comparable<T>> T[] mergeSort(T[] array){
         if(array.length == 1){
             return array;

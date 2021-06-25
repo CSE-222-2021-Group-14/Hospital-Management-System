@@ -1,5 +1,6 @@
 package Graph;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -10,7 +11,7 @@ import java.util.NoSuchElementException;
 */
 
 public class MatrixGraph
-    extends AbstractGraph {
+    extends AbstractGraph implements Serializable {
 
   /**** BEGIN EXERCISE ****/
   // Data field

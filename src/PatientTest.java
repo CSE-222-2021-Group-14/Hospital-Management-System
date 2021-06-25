@@ -1,8 +1,9 @@
 import org.junit.Test;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-class PatientTest {
+class PatientTest implements Serializable {
 
     /**
      * Test : PatientTest : addAppointment

@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -5,7 +6,7 @@ import java.util.*;
  * @param <E> type of elements in this SkipList
  */
 @SuppressWarnings("unchecked")
-public class SkipList<E extends Comparable<E>> implements Iterable<E>{
+public class SkipList<E extends Comparable<E>> implements Iterable<E>, Serializable {
     private static final double LOG2 = Math.log(2.0);
     private int maxLevel;
     private int maxCap;
@@ -44,7 +45,7 @@ public class SkipList<E extends Comparable<E>> implements Iterable<E>{
      * Class to represent a SkipList node.
      * @param <E> type of elements in this SkipList
      */
-    private static class SLNode<E>{
+    private static class SLNode<E> implements Serializable{
         SLNode<E>[] links;
         E data;
 

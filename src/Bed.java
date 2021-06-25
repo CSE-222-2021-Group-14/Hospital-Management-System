@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Bed {
+public class Bed implements Serializable {
     private BedStatus bedStatus;
     private Patient patient;
     private LocalDateTime occupiedSince;
