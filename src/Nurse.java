@@ -1,5 +1,6 @@
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Scanner;
 
 /** Class for The User which is Hospital Nurses*/
 public class Nurse extends AbstractPerson implements Staff, Comparable<Nurse> {
