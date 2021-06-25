@@ -14,6 +14,7 @@ class PatientTest {
         System.out.println("Begin Test #"+18);
         Patient p = new Patient("TestPatientName", "TestPatientSurname", "00111222333", "05554443322", "12345678");
         Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222334", "05554443323", "12345678");
+        // look here xxx
         LocalDateTime time = null;
         Department department = DERMATOLOGY;
         PolyclinicAppointment pa = new PolyclinicAppointment(p, d, time, department);
@@ -35,6 +36,7 @@ class PatientTest {
         System.out.println("Begin Test #"+19);
         Patient p = new Patient("TestPatientName", "TestPatientSurname", "00111222333", "05554443322", "12345678");
         Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222334", "05554443323", "12345678");
+        // look here xxx
         LocalDateTime time = null;
         Department department = DERMATOLOGY;
         PolyclinicAppointment pa1 = new PolyclinicAppointment(p, d, time, department);
@@ -61,6 +63,7 @@ class PatientTest {
         System.out.println("Begin Test #"+20);
         Patient p = new Patient("TestPatientName", "TestPatientSurname", "00111222333", "05554443322", "12345678");
         Doctor d = new Doctor("TestDoctorName", "TestDoctorSurname", "00111222334", "05554443323", "12345678");
+        // look here xxx
         LocalDateTime time = null;
         Department department = DERMATOLOGY;
         PolyclinicAppointment pa = new PolyclinicAppointment(p, d, time, department);

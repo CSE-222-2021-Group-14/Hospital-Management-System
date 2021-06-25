@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class NurseTest {
@@ -8,12 +10,15 @@ class NurseTest {
      * post : Appointments does not contain last vaccine appointment, because of it must be done.
      * Constructs patient, localdatetime, appointment (vaccine appointment) and nurse objects.
      * Adds last vaccine appointment to nurse's appointments priority queue.
-     * Returns true if priority queue does not contain this vaccine appointment no more,
-     * Otherwise returns false if priority queue still contains this vaccine appointment.
      */
     @org.junit.jupiter.api.Test
     void vaccinate() {
-        Nurse n = null;
+        Nurse n = new Nurse("TestNurseName", "TestNurseSurname", "00111222333", "05554443322", "12345678");
+        Patient p = new Patient("TestPatientName", "TestPatientSurname", "00111222334", "05554443323", "12345678");
+        // look here xxx
+        LocalDateTime time = null;
+        VaccineAppointment va = new VaccineAppointment(p, n, time);
+        n.add(va);
         n.vaccinate();
         System.out.println("Test #"+15);
         System.out.println("Nurse ID    : "+n.getID());
@@ -26,12 +31,10 @@ class NurseTest {
      * post : Requests does not contain last request, because of it must be done.
      * Constructs patient, localdatetime and nurse objects.
      * Adds patient p who requested take care to nurse's requests queue.
-     * Returns true if queue does not contain this patient p no more,
-     * Otherwise returns false if queue still contains this patient p.
      */
     @org.junit.jupiter.api.Test
     void takeCare() {
-        Nurse n = null;
+        Nurse n = new Nurse("TestNurseName", "TestNurseSurname", "00111222333", "05554443322", "12345678");
         n.takeCare();
         System.out.println("Test #"+16);
         System.out.println("Nurse ID    : "+n.getID());
@@ -44,13 +47,14 @@ class NurseTest {
      * post : Appointments priority queue contains appointment a.
      * Constructs patient, localdatetime, appointment (type vaccine appointment) and nurse objects.
      * Adds appointment to nurse's appointments priority queue.
-     * Returns true if adds appointment,
-     * Otherwise returns false if does not add appointment.
      */
     @org.junit.jupiter.api.Test
     void add() {
-        Nurse n = null;
-        VaccineAppointment va = null;
+        Nurse n = new Nurse("TestNurseName", "TestNurseSurname", "00111222333", "05554443322", "12345678");
+        Patient p = new Patient("TestPatientName", "TestPatientSurname", "00111222334", "05554443323", "12345678");
+        // look here xxx
+        LocalDateTime time = null;
+        VaccineAppointment va = new VaccineAppointment(p, n, time);
         n.add(va);
         System.out.println("Test #"+17);
         System.out.println("Nurse ID    : "+n.getID());
