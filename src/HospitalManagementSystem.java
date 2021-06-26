@@ -166,12 +166,12 @@ public class HospitalManagementSystem implements Serializable {
                             case 5 -> {
                                 System.out.println("Please select your current location\n0)Desk");
                                 Department.printDepartments();
-                                System.out.println("10)Vaccination\n11)Wc");
-                                int current = getValidInput(scanner, 0, 11);
+                                System.out.println("9)Vaccination\n10)Wc");
+                                int current = getValidInput(scanner, 0, 10);
                                 System.out.println("Please select your destination\n0)Desk");
                                 Department.printDepartments();
-                                System.out.println("10)Vaccination\n11)Wc");
-                                int dest = getValidInput(scanner, 0, 11);
+                                System.out.println("9)Vaccination\n10)Wc");
+                                int dest = getValidInput(scanner, 0, 10);
                                 int[][] result = shortestPath(patient, current, dest);
                                 if(result[0].length == 0) System.out.println("You are already there");
                                 else if(result[0].length == 1){
@@ -605,10 +605,13 @@ public class HospitalManagementSystem implements Serializable {
             shortestPath[i++] = stack.pop();
         }
         for(i = 0; i < shortestPath.length; i++){
-            shortestPathWeights[i] = (int) distance[i];
+            shortestPathWeights[i] = (int) distance[shortestPath[i]];
         }
         returnVal[0] = shortestPath;
         returnVal[1] = shortestPathWeights;
+        System.out.println("vertices\n" + Arrays.toString(returnVal[0]) + "\n");
+        System.out.println("path\n" + Arrays.toString(returnVal[1]) + "\n");
+        System.out.println("distance\n" + Arrays.toString(distance) + "\n");
         return returnVal;
     }
 
